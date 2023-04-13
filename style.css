@@ -2,23 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-#backgroundVideo {
-  object-fit: cover;
-  position: fixed;
-  right: 0;
-  bottom: 0;
+.vertical-centered-box {
+  position: absolute;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  text-align: center;
 }
 
-@media (min-aspect-ratio: 16/9) {
-  #backgroundVideo {
-    height: 56.25vw;
-  }
+#particles-background,
+#particles-foreground {
+  left: -51%;
+  top: -51%;
+  width: 202%;
+  height: 202%;
+  transform: scale3d(0.5, 0.5, 1);
 }
-@media (max-aspect-ratio: 16/9) {
-  #backgroundVideo {
-    width: 177.78vh;
-  }
+
+#particles-background {
+  background: mix(#3f3251, #002025, 70%);
+  background-image: -moz-linear-gradient(45deg, #3f3251 2%, #002025 100%);
+  background-image: -webkit-linear-gradient(45deg, #3f3251 2%, #002025 100%);
+  background-image: linear-gradient(45deg, #3f3251 2%, #002025 100%);
 }
