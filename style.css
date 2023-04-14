@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* PARTICLES BACKGROUND */
 .vertical-centered-box {
   position: absolute;
   width: 100%;
@@ -16,11 +17,52 @@
   width: 202%;
   height: 202%;
   transform: scale3d(0.5, 0.5, 1);
+  z-index: -5;
 }
 
 #particles-background {
   background: mix(#3f3251, #002025, 70%);
-  background-image: -moz-linear-gradient(45deg, #3f3251 2%, #002025 100%);
-  background-image: -webkit-linear-gradient(45deg, #3f3251 2%, #002025 100%);
   background-image: linear-gradient(45deg, #3f3251 2%, #002025 100%);
 }
+/* PARTICLES BACKGROUND */
+
+/* ANIMATED BORDER */
+.animated-border:before,
+.animated-border:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(
+    45deg,
+    #f77598,
+    #75d1f0,
+    #c07eec,
+    #896ae2,
+    #75d1f0,
+    #c07eec,
+    #f77598
+  );
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.animated-border:after {
+  filter: blur(50px);
+}
+/* ANIMATED BORDER */
