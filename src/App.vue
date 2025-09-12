@@ -1,11 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeroSection from './components/HeroSection.vue'
+import DefaultLayout from './layouts/DefaultLayout.vue'
+import DetailsLayout from './layouts/DetailsLayout.vue'
+import AboutSection from './components/AboutSection.vue'
+import ProjectsSection from './components/ProjectsSection.vue'
+import EducationSection from './components/EducationSection.vue'
+import FooterSection from './components/FooterSection.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <DefaultLayout>
+    <HeroSection />
+    <DetailsLayout>
+      <AboutSection />
+      <EducationSection />
+      <ProjectsSection />
+      <FooterSection />
+    </DetailsLayout>
+  </DefaultLayout>
 </template>
 
 <style scoped></style>
