@@ -37,3 +37,9 @@
   --depth: 1;
   --noise: 0;
 }
+
+/* Custom scrollbar - Cross-browser support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0% 0% 0% / 0.2) transparent;
+}
