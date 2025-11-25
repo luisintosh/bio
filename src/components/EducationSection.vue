@@ -3,6 +3,7 @@ import aws from '../assets/icons/aws.webp'
 import google from '../assets/icons/google.webp'
 import tecnm from '../assets/icons/tecnm.webp'
 import deeplearning from '../assets/icons/deeplearning.webp'
+import ibm from '../assets/icons/ibm.webp'
 </script>
 
 <template>
@@ -13,6 +14,21 @@ import deeplearning from '../assets/icons/deeplearning.webp'
       expertise to stay ahead in software innovation.
     </p>
     <ul class="list bg-base-100">
+      <li class="list-row">
+        <div>
+          <img class="size-10 border border-base-300" :src="ibm" />
+        </div>
+        <div>
+          <div>GenAI Training Path - Agentic Track</div>
+          <div class="text-xs uppercase font-semibold opacity-60">2025 - IBM + Coursera</div>
+        </div>
+        <a
+          href="https://www.coursera.org//account/accomplishments/badge/ckgnsS6MSUWIJ7EujFlFqg"
+          class="btn btn-sm btn-neutral btn-ghost"
+        >
+          certificate
+        </a>
+      </li>
       <li class="list-row">
         <div>
           <img class="size-10 border border-base-300" :src="deeplearning" />
