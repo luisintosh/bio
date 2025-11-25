@@ -22,13 +22,16 @@ import arrow from '../assets/img/down-arrow.gif'
           Frontend expert, full-stack capable, building clean, scalable apps with Cloud and GenAI.
         </p>
         <div class="socials flex justify-center gap-4 mt-6">
-          <a href="https://github.com/luisintosh">
+          <a href="https://github.com/luisintosh" class="hover:ring ring-base-200 ring-offset-2">
             <img :src="github" alt="GitHub" class="w-12 h-12" />
           </a>
-          <a href="https://linkedin.com/in/luismendieta">
+          <a
+            href="https://linkedin.com/in/luismendieta"
+            class="hover:ring ring-base-200 ring-offset-2"
+          >
             <img :src="linkedin" alt="LinkedIn" class="w-12 h-12" />
           </a>
-          <a href="mailto:hello@luisexpert.dev">
+          <a href="mailto:hello@luisexpert.dev" class="hover:ring ring-base-200 ring-offset-2">
             <img :src="email" alt="Email" class="w-12 h-12" />
           </a>
         </div>
