@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only" />
+<title>Luis Mendieta &mdash; Software Engineer</title>
+<meta
+  name="description"
+  content="Lead Full-Stack AI Engineer | React, Node.js, NestJS."
+/>
+<meta name="author" content="Luis Mendieta" />
+
+<!-- Open Graph (Facebook, LinkedIn, etc.) -->
+<meta property="og:title" content="Luis Mendieta &mdash; Software Engineer" />
+<meta
+  property="og:description"
+  content="Lead Full-Stack AI Engineer | React, Node.js, NestJS."
+/>
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.luisexpert.dev/" />
+<meta property="og:image" content="https://www.luisexpert.dev/preview-image.jpg" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Luis Mendieta &mdash; Software Engineer" />
+<meta
+  name="twitter:description"
+  content="Lead Full-Stack AI Engineer | React, Node.js, NestJS."
+/>
+<meta name="twitter:image" content="https://www.luisexpert.dev/preview-image.jpg" />
+<meta name="twitter:creator" content="@luisintosh" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* =========================================================
+   Luis Mendieta — scroll-driven sky-to-lagoon landing page
+   Playful Mario-Wonder-ish vibe: chunky outlines, bouncy
+   fonts, saturated pastels. No copyrighted assets.
+   ========================================================= */
+
+:root {
+  --ink: #1a1530;
+  --ink-soft: #3a2f55;
+  --cream: #fff7e8;
+  --paper: #fff3d6;
+  --red: #e6443b;
+  --red-deep: #b8322a;
+  --yellow: #ffd24a;
+  --yellow-deep: #e8a832;
+  --blue: #3a8ee6;
+  --blue-deep: #1f5fae;
+  --green: #4fbf5f;
+  --green-deep: #2f8f44;
+  --pink: #ff9bb0;
+  --purple: #8a64d6;
+
+  /* sunset defaults */
+  --sky-1: #ffd29a;
+  --sky-2: #ff9a7a;
+  --sky-3: #ff6f8a;
+  --sky-4: #8e5aa0;
+  --sky-5: #4a3a7a;
+
+  /* lagoon defaults */
+  --lag-sky-1: #a8dfff;
+  --lag-sky-2: #cfeeff;
+  --lag-water-1: #2f7dc9;
+  --lag-water-2: #15427a;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', system-ui, sans-serif;
+  color: var(--ink);
+  background: #000;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------- Scroll driver --------- */
+#world {
+  position: relative;
+  width: 100%;
+}
+.spacer {
+  height: 100vh;
+  width: 100%;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  perspective: 900px;
+  z-index: 0;
+}
+
+.layer { position: absolute; inset: 0; }
+
+/* --------- Sunset sky (scene 1) --------- */
+.sky {
+  background:
+    radial-gradient(120% 80% at 50% 95%, rgba(255,210,154,0.4) 0%, rgba(255,210,154,0) 60%),
+    linear-gradient(to bottom,
+      var(--sky-1) 0%,
+      var(--sky-2) 28%,
+      var(--sky-3) 55%,
+      var(--sky-4) 80%,
+      var(--sky-5) 100%);
+  transition: filter .6s ease;
+}
+.sun {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 280px;
+  height: 280px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    #fff4b8 0%,
+    #ffd96a 35%,
+    #ffa560 60%,
+    rgba(255,120,80,0) 75%);
+  filter: blur(1px);
+  z-index: 1;
+}
+
+/* --------- Clouds --------- */
+.cloud-layer { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.cloud-far { z-index: 2; opacity: 0.85; }
+.cloud-mid { z-index: 3; }
+.cloud-near { z-index: 6; }
+
+.cloud {
+  position: absolute;
+  display: block;
+  filter: drop-shadow(0 6px 0 rgba(0,0,0,0.08));
+  will-change: transform;
+}
+.cloud svg { display: block; }
+
+/* --------- Hero text --------- */
+.hero {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4; /* between mid and near clouds */
+  text-align: center;
+  will-change: transform, opacity;
+  padding: 0 24px;
+}
+.hero-sub {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: clamp(18px, 2.2vw, 28px);
+  color: var(--cream);
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  text-shadow: 0 3px 0 rgba(0,0,0,0.18);
+  margin-bottom: 10px;
+}
+.hero-title {
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-weight: 400;
+  font-size: clamp(72px, 13vw, 220px);
+  line-height: 0.9;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+  -webkit-text-stroke: 3px var(--ink);
+  text-shadow:
+    0 6px 0 var(--ink),
+    0 10px 0 rgba(0,0,0,0.18),
+    0 18px 40px rgba(26, 21, 48, 0.35);
+}
+.hero-title .word {
+  display: inline-block;
+  margin: 0 10px;
+  animation: heroBob 4s ease-in-out infinite;
+}
+.hero-title .word:nth-child(2) { animation-delay: .5s; color: #fff1b0; }
+@keyframes heroBob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+.hero-role {
+  margin-top: 14px;
+  display: inline-block;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 2.2vw, 26px);
+  color: var(--ink);
+  background: var(--yellow);
+  padding: 8px 18px;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 6px 0 var(--ink), 0 10px 18px rgba(0,0,0,0.18);
+  transform: rotate(-2deg);
+}
+
+/* scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: cuePulse 2s ease-in-out infinite;
+}
+.scroll-label {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: rgba(26,21,48,0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.arrow {
+  width: 36px;
+  height: 36px;
+  border-right: 5px solid var(--cream);
+  border-bottom: 5px solid var(--cream);
+  transform: rotate(45deg);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+  border-bottom-right-radius: 6px;
+}
+@keyframes cuePulse {
+  0%, 100% { transform: translate(-50%, 0); opacity: 1; }
+  50% { transform: translate(-50%, 10px); opacity: .75; }
+}
+
+/* --------- Falling character --------- */
+.faller {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 160px;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 7;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.35));
+  will-change: transform, opacity;
+}
+.faller svg { width: 100%; height: 100%; }
+
+/* --------- Speed lines during fall --------- */
+.speedlines {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  will-change: opacity;
+}
+.speedlines .line {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.75) 50%,
+    rgba(255,255,255,0) 100%);
+  border-radius: 2px;
+  animation: streak 0.7s linear infinite;
+}
+@keyframes streak {
+  0% { transform: translateY(120vh) scaleY(0.6); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-60vh) scaleY(1); opacity: 0; }
+}
+
+/* --------- Wind particles --------- */
+.wind {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+.wind .spark {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 0 10px rgba(255,255,255,0.6);
+  animation: windFly 1.2s linear infinite;
+}
+@keyframes windFly {
+  0% { transform: translateY(110vh) translateX(0) scale(0.6); opacity: 0; }
+  20% { opacity: 0.9; }
+  100% { transform: translateY(-30vh) translateX(10px) scale(0.2); opacity: 0; }
+}
+
+/* --------- Content cards --------- */
+.cards {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+}
+.card {
+  position: absolute;
+  width: min(620px, 86vw);
+  max-height: 78vh;
+  overflow: hidden;
+  padding: 28px 30px 30px;
+  border-radius: 28px;
+  background: var(--cream);
+  border: 4px solid var(--ink);
+  box-shadow:
+    0 8px 0 var(--ink),
+    0 18px 40px rgba(0,0,0,0.3);
+  font-family: 'Nunito', sans-serif;
+  color: var(--ink);
+  opacity: 0;
+  transform: translate(-50%, 50vh) rotate(-3deg) scale(0.9);
+  will-change: transform, opacity;
+  left: 50%;
+  top: 50%;
+  margin-top: -30vh;
+  pointer-events: auto;
+}
+.card h2 {
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(32px, 4.5vw, 56px);
+  margin: 6px 0 14px;
+  color: var(--ink);
+  -webkit-text-stroke: 0;
+  line-height: 0.95;
+}
+.card p, .card li { font-size: clamp(14px, 1.25vw, 17px); line-height: 1.5; }
+
+.card-stamp {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-family: 'Lilita One', sans-serif;
+  font-size: 46px;
+  color: var(--ink);
+  opacity: 0.12;
+  letter-spacing: -0.04em;
+}
+
+/* Experience card — match About's unified type system */
+.card-exp p, .card-exp li {
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  font-weight: 400;
+  color: var(--ink);
+}
+.card-exp b, .card-exp strong { font-weight: 800; }
+.card-exp em { font-style: italic; font-weight: 400; }
+.card-exp .timeline li p { margin: 0 0 8px; }
+.card-exp .timeline li p:last-child { margin-bottom: 0; }
+.card-exp .t-top b { font-size: 18px; }
+.card-exp .t-top span { font-size: 13px; letter-spacing: 0.12em; }
+.card-exp .t-org { font-size: 14px; margin-bottom: 8px; }
+
+.card-about { background: linear-gradient(180deg, #fff7e8, #ffe9c4); }
+.card-exp   { background: linear-gradient(180deg, #eaf4ff, #cfe6ff); }
+.card-edu   { background: linear-gradient(180deg, #ecfce7, #cff1bc); }
+
+/* Education card — unified type */
+.card-edu p, .card-edu li {
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  font-weight: 400;
+  color: var(--ink);
+}
+.card-edu b, .card-edu strong { font-weight: 800; }
+.card-edu .t-top b { font-size: 17px; }
+.card-edu .t-top span { font-size: 13px; letter-spacing: 0.12em; }
+.card-edu .t-org { font-size: 14px; color: var(--green-deep); }
+.card-edu .edu { gap: 10px; }
+.card-edu .edu li { padding: 10px 14px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 12px;
+  background: #fff;
+  border: 2.5px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 3px 0 var(--ink);
+}
+.chip:nth-child(3n) { background: var(--yellow); }
+.chip:nth-child(3n+1) { background: #ffd7e6; }
+.chip:nth-child(3n+2) { background: #cfe6ff; }
+
+/* About card — polished layout. All text 16px; vary only weight/italic. */
+.card-about p,
+.card-about .card-lede,
+.card-about .now-text,
+.card-about .open-text {
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  font-weight: 400;
+  margin: 0 0 10px !important;
+  color: var(--ink);
+}
+.card-about b, .card-about strong { font-weight: 800; }
+.card-about em { font-style: italic; font-weight: 400; }
+
+.card-kicker {
+  display: inline-block;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink-soft);
+  background: rgba(26,21,48,0.06);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 2px;
+}
+.card-lede b { color: var(--red-deep); }
+.card-body em {
+  font-style: italic;
+  background: none;
+  padding: 0;
+  font-weight: 400;
+}
+.now-box {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin: 14px 0 10px;
+  box-shadow: 0 4px 0 var(--ink);
+  position: relative;
+}
+.now-box::before {
+  content: "";
+  position: absolute;
+  left: -4px; top: -4px; right: -4px; bottom: -4px;
+  border-radius: 20px;
+  background: repeating-linear-gradient(45deg,
+    rgba(230,68,59,0.0) 0 6px,
+    rgba(230,68,59,0.08) 6px 12px);
+  z-index: -1;
+}
+.now-dot {
+  flex: 0 0 auto;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 2.5px solid var(--ink);
+  margin-top: 4px;
+  box-shadow: 0 0 0 4px rgba(79,191,95,0.28);
+  animation: nowPulse 1.6s ease-in-out infinite;
+}
+@keyframes nowPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(79,191,95,0.28); }
+  50% { box-shadow: 0 0 0 8px rgba(79,191,95,0.05); }
+}
+.now-label {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--green-deep);
+}
+.now-text { margin-top: 2px; }
+
+.open-to { margin: 10px 0 6px; }
+.open-label {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.open-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.open-text { margin: 0; }
+.outside {
+  margin-top: 10px !important;
+  font-style: italic;
+}
+.chip-role {
+  background: var(--yellow) !important;
+  font-weight: 700;
+}
+
+.timeline, .edu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.timeline li, .edu li {
+  position: relative;
+  padding: 12px 14px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 var(--ink);
+}
+.t-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-family: 'Fredoka', sans-serif;
+}
+.t-top b { font-weight: 700; font-size: clamp(15px, 1.5vw, 19px); }
+.t-top span {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.t-org {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--blue-deep);
+  margin-top: 2px;
+}
+.timeline li p, .edu li p { margin: 6px 0 0; }
+
+/* --------- Depth tint --------- */
+.depth-tint {
+  position: absolute; inset: 0;
+  background: radial-gradient(60% 80% at 50% 40%, rgba(26,21,48,0) 0%, rgba(26,21,48,0.55) 100%);
+  opacity: 0;
+  z-index: 9;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* --------- Vignette (always on) --------- */
+.vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 100% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.35) 100%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* --------- Lagoon scene --------- */
+.lagoon {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.lagoon.active { pointer-events: auto; }
+.lagoon-sky {
+  position: absolute;
+  inset: 0 0 42% 0;
+  background:
+    radial-gradient(80% 100% at 50% 100%, rgba(255,220,160,0.55) 0%, rgba(255,220,160,0) 60%),
+    linear-gradient(to bottom, var(--lag-sky-1) 0%, var(--lag-sky-2) 55%, #ffe6c8 100%);
+}
+.lagoon-sun {
+  position: absolute;
+  left: 50%;
+  bottom: 46%;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    #fff8d8 0%, #ffe08c 40%, rgba(255,200,120,0) 75%);
+  transform: translateX(-50%);
+}
+.mountains {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 38%;
+  width: 100%;
+  height: 28%;
+  z-index: 2;
+}
+.seagulls {
+  position: absolute;
+  inset: 0 0 42% 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.seagull {
+  position: absolute;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--ink);
+  animation: gullDrift 18s linear infinite;
+}
+.seagull svg { display: block; width: 38px; height: 22px; }
+@keyframes gullDrift {
+  0% { transform: translateX(-8vw) translateY(0); }
+  50% { transform: translateX(50vw) translateY(-10px); }
+  100% { transform: translateX(110vw) translateY(0); }
+}
+.seagull .wing { animation: flap 1.1s ease-in-out infinite; transform-origin: center; }
+@keyframes flap {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.35); }
+}
+
+.pines {
+  position: absolute;
+  left: -20px; right: -20px;
+  bottom: 42%;
+  height: 22%;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+}
+.pine {
+  flex: 1 0 auto;
+  display: block;
+  filter: drop-shadow(0 6px 0 rgba(0,0,0,0.15));
+}
+
+.water {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0; height: 42%;
+  background:
+    linear-gradient(to bottom,
+      #4fa3df 0%,
+      var(--lag-water-1) 40%,
+      var(--lag-water-2) 100%);
+  z-index: 4;
+  overflow: hidden;
+}
+.water::before {
+  /* Horizon line highlight */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 6px;
+  background: linear-gradient(to bottom, rgba(255,230,180,0.7), rgba(255,230,180,0));
+}
+.reflections {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(to right,
+      rgba(255,255,255,0) 0 40px,
+      rgba(255,255,255,0.12) 40px 44px,
+      rgba(255,255,255,0) 44px 80px);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  animation: shimmer 6s ease-in-out infinite alternate;
+}
+@keyframes shimmer {
+  0% { transform: translateY(0) scaleX(1); opacity: 0.6; }
+  100% { transform: translateY(-3px) scaleX(1.02); opacity: 0.95; }
+}
+.ripples {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ripple {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,0.55);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+.ripple.play {
+  animation: rippleOut 2.5s ease-out forwards;
+}
+@keyframes rippleOut {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(6); opacity: 0; }
+}
+
+/* --------- Splash --------- */
+.splash {
+  position: absolute;
+  left: 50%;
+  bottom: calc(42% - 30px);
+  transform: translateX(-50%);
+  width: 420px;
+  height: 220px;
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.splash svg { width: 100%; height: 100%; overflow: visible; }
+.splash.play { animation: splashFade .9s ease-out forwards; }
+.splash.play .splash-drop { animation: dropRise .9s ease-out forwards; }
+.splash.play circle { animation: dropRise .9s ease-out forwards; }
+@keyframes splashFade {
+  0% { opacity: 0; transform: translate(-50%, 40px) scale(0.6); }
+  30% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -40px) scale(1.1); }
+}
+@keyframes dropRise {
+  0% { transform: translateY(30px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+/* --------- Contact --------- */
+.contact {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 20px 5vh;
+  opacity: 0;
+  transform: translateY(20vh);
+  pointer-events: none;
+}
+.lagoon.active .contact { pointer-events: auto; }
+.contact-card {
+  width: min(540px, 92vw);
+  background: var(--cream);
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  padding: 26px 28px 22px;
+  box-shadow: 0 10px 0 var(--ink), 0 20px 40px rgba(0,0,0,0.3);
+  position: relative;
+}
+.contact-badge {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 0 var(--ink);
+}
+.contact-card h2 {
+  margin: 6px 0 2px;
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(36px, 5vw, 54px);
+  color: var(--ink);
+}
+.contact-sub {
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#contactForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+#contactForm input,
+#contactForm textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  padding: 10px 12px;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  background: #fff;
+  outline: none;
+  color: var(--ink);
+  box-shadow: inset 0 3px 0 rgba(0,0,0,0.04);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#contactForm input:focus,
+#contactForm textarea:focus {
+  box-shadow: 0 0 0 3px rgba(58,142,230,0.35), inset 0 3px 0 rgba(0,0,0,0.04);
+  transform: translateY(-1px);
+}
+#contactForm textarea { resize: vertical; min-height: 100px; }
+.btn-send {
+  margin-top: 4px;
+  font-family: 'Lilita One', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  background: var(--red);
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  padding: 12px 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--ink);
+  transition: transform .08s ease, box-shadow .08s ease;
+  letter-spacing: 0.02em;
+}
+.btn-send:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--ink); }
+.btn-send:active { transform: translateY(3px); box-shadow: 0 3px 0 var(--ink); }
+.form-ok {
+  margin-top: 6px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: var(--green-deep);
+  display: none;
+}
+.form-ok.show { display: block; animation: pop .4s ease; }
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.socials {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+}
+.socials a {
+  color: var(--ink);
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  padding: 6px 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.socials a:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink); }
+
+/* --------- Progress ribbon --------- */
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  z-index: 40;
+  background: transparent;
+  pointer-events: none;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--red), var(--yellow), var(--blue));
+}
+
+/* --------- Lagoon DUSK variant --------- */
+.lagoon.dusk {
+  --lag-sky-1: #ffb38a;
+  --lag-sky-2: #f78bb0;
+  --lag-water-1: #355a92;
+  --lag-water-2: #101a3a;
+}
+
+/* --------- Tweaks panel --------- */
+.tweaks {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  width: 260px;
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 8px 0 var(--ink), 0 14px 30px rgba(0,0,0,0.3);
+  font-family: 'Fredoka', sans-serif;
+}
+.tweaks.hidden { display: none; }
+.tweaks-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.tweaks-head b { font-size: 16px; }
+.tweaks-hint { font-size: 10px; color: var(--ink-soft); letter-spacing: .1em; text-transform: uppercase; }
+.tw-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 6px 0;
+  font-size: 13px; font-weight: 600;
+}
+.tw-row select, .tw-row input[type=range] {
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 4px 6px;
+  background: #fff;
+}
+
+/* --------- Small screens --------- */
+@media (max-width: 640px) {
+  .hero-title { -webkit-text-stroke: 2px var(--ink); }
+  .scroll-label { font-size: 11px; }
+  .arrow { width: 28px; height: 28px; }
+}
+
+/* =========================================================
+   MOBILE LINEAR MODE (< 720px)
+   Skips the scroll-driven fall. Hero → stacked cards → lagoon.
+   ========================================================= */
+@media (max-width: 720px) {
+  body { overflow-y: auto; }
+
+  /* collapse scroll spacers */
+  .spacer { display: none; }
+  #world { height: auto; }
+
+  /* Stage becomes a normal flowing block */
+  #stage {
+    position: static;
+    inset: auto;
+    overflow: visible;
+    perspective: none;
+  }
+
+  /* HERO section fills first screen */
+  #hero {
+    position: relative;
+    inset: auto;
+    height: 100vh;
+    width: 100%;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Sky fills behind hero only */
+  .sky, .sun, #cloudFar, #cloudMid, #cloudNear {
+    position: fixed;
+  }
+  .sky { z-index: -3; }
+  .sun { z-index: -2; }
+  #cloudFar, #cloudMid, #cloudNear { z-index: -1; }
+  /* gentle drift so it still feels alive */
+  #cloudFar  .cloud { animation: mDriftSlow 60s linear infinite; }
+  #cloudMid  .cloud { animation: mDriftSlow 45s linear infinite; }
+  #cloudNear .cloud { animation: mDriftFast 30s linear infinite; }
+  @keyframes mDriftSlow {
+    0% { transform: translateX(-8vw); }
+    100% { transform: translateX(108vw); }
+  }
+  @keyframes mDriftFast {
+    0% { transform: translateX(-20vw); }
+    100% { transform: translateX(120vw); }
+  }
+
+  /* Hide the fall-only FX */
+  .speedlines, .wind, .faller, .depth-tint { display: none !important; }
+
+  /* CARDS — flow vertically, full width */
+  .cards {
+    position: relative;
+    inset: auto;
+    z-index: 2;
+    padding: 24px 16px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: linear-gradient(180deg,
+      rgba(255,180,140,0.15) 0%,
+      rgba(120,140,220,0.25) 50%,
+      rgba(80,120,180,0.35) 100%);
+  }
+  .card {
+    position: relative;
+    inset: auto;
+    left: auto;
+    top: auto;
+    margin: 0;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+    max-height: none;
+    overflow: visible;
+    opacity: 1 !important;
+    transform: none !important;
+    padding: 22px 20px 24px;
+    border-width: 3px;
+    box-shadow: 0 6px 0 var(--ink), 0 12px 24px rgba(0,0,0,0.18);
+  }
+  .card h2 {
+    font-size: 36px !important;
+  }
+  .card-stamp { font-size: 38px; top: 14px; right: 18px; }
+
+  /* Tighten inner type a touch */
+  .card-about p, .card-about .card-lede,
+  .card-about .now-text, .card-about .open-text,
+  .card-exp p, .card-exp li,
+  .card-edu p, .card-edu li {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Stack title + date so long titles don't crunch the year */
+  .t-top {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 2px;
+  }
+  .t-top span { font-size: 11px !important; }
+  .card-exp .t-top b { font-size: 16px !important; }
+  .card-edu .t-top b { font-size: 15px !important; }
+
+  /* Chip row breathes */
+  .chips { gap: 6px; margin-top: 12px; }
+  .chip { font-size: 12px; padding: 5px 10px; }
+
+  /* LAGOON — a real full-height section after cards */
+  .lagoon {
+    position: relative;
+    inset: auto;
+    opacity: 1 !important;
+    height: 100vh;
+    min-height: 560px;
+    z-index: 1;
+    pointer-events: auto;
+  }
+  .lagoon.active { pointer-events: auto; }
+  .splash { display: none; } /* no landing moment in linear mode */
+
+  /* Contact anchored at bottom of lagoon */
+  .contact {
+    position: absolute;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Hide progress bar in linear mode — it's misleading here */
+  .progress { display: none; }
+
+  /* Scroll cue — nudge user toward the cards */
+  .scroll-cue { bottom: 3vh; }
+}
+
+</style>
+</head>
+<body>
+  <!-- Persistent parent scrollable stage. Total height = 5 scenes * 100vh -->
+  <div id="world">
+
+    <!-- Fixed canvas that renders the current scene -->
+    <div id="stage">
+
+      <!-- SKY BACKGROUND (sunset gradient) -->
+      <div class="layer sky" id="sky"></div>
+
+      <!-- Sun -->
+      <div class="sun" id="sun"></div>
+
+      <!-- Distant background clouds -->
+      <div class="cloud-layer cloud-far" id="cloudFar"></div>
+      <!-- Mid clouds (parallax) -->
+      <div class="cloud-layer cloud-mid" id="cloudMid"></div>
+      <!-- Near clouds (parallax, faster) -->
+      <div class="cloud-layer cloud-near" id="cloudNear"></div>
+
+      <!-- Speed lines during fall -->
+      <div class="speedlines" id="speedlines"></div>
+      <!-- Wind particles -->
+      <div class="wind" id="wind"></div>
+
+      <!-- The hero title over sky (scene 1) -->
+      <div class="hero" id="hero">
+        <div class="hero-sub">hello, i'm</div>
+        <h1 class="hero-title">
+          <span class="word">Luis</span>
+          <span class="word">Mendieta</span>
+        </h1>
+        <div class="hero-role">Software&nbsp;Engineer</div>
+        <div class="scroll-cue">
+          <div class="scroll-label">scroll to dive</div>
+          <div class="arrow"></div>
+        </div>
+      </div>
+
+      <!-- The falling character (silhouette of a tiny person) -->
+      <div class="faller" id="faller">
+        <svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- cape/scarf -->
+          <path d="M45 60 Q25 90 40 120 Q55 100 60 90 Z" fill="#e6443b" stroke="#1a1530" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M75 60 Q95 90 80 120 Q65 100 60 90 Z" fill="#e6443b" stroke="#1a1530" stroke-width="3" stroke-linejoin="round"/>
+          <!-- body -->
+          <ellipse cx="60" cy="80" rx="22" ry="28" fill="#3a8ee6" stroke="#1a1530" stroke-width="4"/>
+          <!-- head -->
+          <circle cx="60" cy="42" r="20" fill="#ffd6a8" stroke="#1a1530" stroke-width="4"/>
+          <!-- hat -->
+          <path d="M40 38 Q60 10 82 38 Q70 30 60 30 Q50 30 40 38 Z" fill="#e6443b" stroke="#1a1530" stroke-width="4" stroke-linejoin="round"/>
+          <!-- eyes -->
+          <circle cx="54" cy="44" r="2.5" fill="#1a1530"/>
+          <circle cx="66" cy="44" r="2.5" fill="#1a1530"/>
+          <!-- smile -->
+          <path d="M54 52 Q60 56 66 52" stroke="#1a1530" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- arms up -->
+          <path d="M40 70 Q20 50 25 30" stroke="#1a1530" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M80 70 Q100 50 95 30" stroke="#1a1530" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="25" cy="30" r="6" fill="#ffd6a8" stroke="#1a1530" stroke-width="3"/>
+          <circle cx="95" cy="30" r="6" fill="#ffd6a8" stroke="#1a1530" stroke-width="3"/>
+          <!-- legs -->
+          <path d="M52 106 Q48 130 52 150" stroke="#1a1530" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M68 106 Q72 130 68 150" stroke="#1a1530" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="52" cy="152" rx="8" ry="4" fill="#6b3a1f" stroke="#1a1530" stroke-width="3"/>
+          <ellipse cx="68" cy="152" rx="8" ry="4" fill="#6b3a1f" stroke="#1a1530" stroke-width="3"/>
+        </svg>
+      </div>
+
+      <!-- Content cards that fly past while falling -->
+      <div class="cards" id="cards">
+        <!-- ABOUT -->
+        <section class="card card-about" data-card="about">
+          <div class="card-stamp">01</div>
+          <div class="card-kicker">hello, world</div>
+          <h2>About&nbsp;Me</h2>
+          <p class="card-lede" id="aboutBody">
+            Full-stack engineer, <b>8+ years</b> in the trenches — shipping
+            ecommerce platforms, crypto wallets, NFT marketplaces, and
+            enterprise tools with <b>React, Next.js, Node &amp; NestJS</b>.
+          </p>
+          <p class="card-body">
+            These days I'm building <b>AI into user-facing products</b> —
+            content generation, automation, intelligent workflows. I
+            architect agentic systems with <b>LangGraph</b> and
+            <b>LangChain</b>: deterministic, stateful, production-ready.
+            Claude Code and Codex are force multipliers, but every line
+            gets reviewed, tested, and understood. <em>No vibe coding.</em>
+          </p>
+
+          <div class="now-box">
+            <span class="now-dot"></span>
+            <div>
+              <div class="now-label">currently</div>
+              <div class="now-text">
+                Leading a <b>GenAI initiative at ACT</b> — owning the full
+                stack of an AI-powered content platform.
+              </div>
+            </div>
+          </div>
+
+          <div class="open-to">
+            <div class="open-label">open to</div>
+            <p class="open-text">
+              Senior / Lead Full-Stack · AI Engineering · Teams building
+              real products with LLMs.
+            </p>
+          </div>
+
+          <p class="card-body outside">
+            Outside code, you'll find me hiking, taking photos, and chasing
+            good coffee.
+          </p>
+
+          <div class="chips" id="aboutChips">
+            <span class="chip">React</span>
+            <span class="chip">Next.js</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">NestJS</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">LangGraph</span>
+            <span class="chip">LangChain</span>
+            <span class="chip">LLMs</span>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="card card-exp" data-card="experience">
+          <div class="card-stamp">02</div>
+          <div class="card-kicker">what i've done</div>
+          <h2>Experience</h2>
+          <ul class="timeline" id="expList">
+            <li>
+              <div class="t-top"><b>Lead Full-Stack AI Engineer</b><span>2025 — Now</span></div>
+              <div class="t-org">ACT Company</div>
+              <p>Own the full-stack <b>GenAI content platform</b>: <b>Node.js / LangGraph</b> agentic backend, <b>Next.js / React</b> frontends for internal stakeholders.</p>
+              <p>Designed <b>deterministic, stateful</b> AI workflows that replaced brittle prompt chains — consistent, high-quality output <em>at scale</em>.</p>
+              <p>Technical bridge between Product &amp; UX. Mentor senior engineers and QA in an AI-first org.</p>
+            </li>
+            <li>
+              <div class="t-top"><b>Lead Frontend Engineer</b><span>2020 — 2025</span></div>
+              <div class="t-org">Ultra Company</div>
+              <p>Senior → Lead over <b>5+ years</b> across <b>crypto, NFTs, ecommerce &amp; gaming</b>.</p>
+              <p><b>Lead (2022–25):</b> Frontend architecture for a Crypto Wallet, NFT marketplace, and an <b>Electron</b> desktop game launcher. Ran sprint planning, code reviews, and technical direction for the team.</p>
+              <p><b>Senior (2020–22):</b> <b>Angular</b> ecommerce storefronts at scale; built the reusable design system; optimized checkout flows.</p>
+              <p><b>Cross-stack:</b> Shipped backend on event-driven microservices with <b>Node.js / NestJS</b> and <b>Kafka</b>.</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="card card-edu" data-card="education">
+          <div class="card-stamp">03</div>
+          <div class="card-kicker">always learning</div>
+          <h2>Education</h2>
+          <ul class="edu" id="eduList">
+            <li>
+              <div class="t-top"><b>GenAI Training Path — Agentic Track</b><span>2025</span></div>
+              <div class="t-org">IBM · Coursera</div>
+            </li>
+            <li>
+              <div class="t-top"><b>GenAI Training Path — Technical Track</b><span>2025</span></div>
+              <div class="t-org">DeepLearning.AI · Coursera</div>
+            </li>
+            <li>
+              <div class="t-top"><b>Professional Cloud Developer</b><span>2024</span></div>
+              <div class="t-org">Google Cloud</div>
+            </li>
+            <li>
+              <div class="t-top"><b>AWS Certified Developer — Associate</b><span>2022</span></div>
+              <div class="t-org">Amazon Web Services (AWS)</div>
+            </li>
+            <li>
+              <div class="t-top"><b>Computer Systems Engineer, Computer Science</b><span>2017</span></div>
+              <div class="t-org">Tecnológico Nacional de México (TecNM)</div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- LAGOON SCENE (scene 5) -->
+      <div class="lagoon" id="lagoon">
+        <div class="lagoon-sky"></div>
+        <div class="lagoon-sun"></div>
+        <!-- mountains -->
+        <svg class="mountains" viewBox="0 0 1600 420" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="m1" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#7b9fd8"/>
+              <stop offset="1" stop-color="#4a6fa8"/>
+            </linearGradient>
+            <linearGradient id="m2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#5c84c0"/>
+              <stop offset="1" stop-color="#355a92"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 260 L160 140 L280 220 L400 80 L560 200 L700 120 L860 240 L1000 140 L1180 220 L1320 100 L1500 200 L1600 160 L1600 420 L0 420 Z" fill="url(#m1)" stroke="#1a1530" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M0 320 L120 240 L260 300 L420 220 L600 300 L780 240 L980 310 L1180 240 L1400 300 L1600 260 L1600 420 L0 420 Z" fill="url(#m2)" stroke="#1a1530" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+
+        <!-- seagulls -->
+        <div class="seagulls" id="seagulls"></div>
+
+        <!-- pine trees row -->
+        <div class="pines" id="pines"></div>
+
+        <!-- water -->
+        <div class="water">
+          <div class="reflections" id="reflections"></div>
+          <div class="ripples" id="ripples"></div>
+        </div>
+
+        <!-- splash at impact -->
+        <div class="splash" id="splash">
+          <svg viewBox="0 0 400 200" aria-hidden="true">
+            <path class="splash-drop" d="M200 160 Q170 80 140 30" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <path class="splash-drop" d="M200 160 Q200 60 200 10" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <path class="splash-drop" d="M200 160 Q230 80 260 30" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <path class="splash-drop" d="M200 160 Q140 100 100 60" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+            <path class="splash-drop" d="M200 160 Q260 100 300 60" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="130" cy="50" r="6" fill="#ffffff"/>
+            <circle cx="200" cy="20" r="8" fill="#ffffff"/>
+            <circle cx="270" cy="50" r="6" fill="#ffffff"/>
+            <circle cx="90" cy="80" r="5" fill="#ffffff"/>
+            <circle cx="310" cy="80" r="5" fill="#ffffff"/>
+          </svg>
+        </div>
+
+        <!-- Contact form, appears after landing -->
+        <div class="contact" id="contact">
+          <div class="contact-card">
+            <div class="contact-badge">you made it!</div>
+            <h2>say hi</h2>
+            <p class="contact-sub">Drop a note — let's build something fun.</p>
+            <form id="contactForm" novalidate>
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" required placeholder="Your name" />
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea name="message" rows="4" required placeholder="Hi Luis!"></textarea>
+              </label>
+              <button type="submit" class="btn-send">
+                <span>Send it</span>
+              </button>
+              <div class="form-ok" id="formOk">Thanks! I'll get back to you soon. ✿</div>
+            </form>
+            <div class="socials">
+              <a href="https://www.linkedin.com/in/luismendieta/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- depth tint overlay (darkens while falling) -->
+      <div class="depth-tint" id="depthTint"></div>
+
+      <!-- vignette -->
+      <div class="vignette"></div>
+    </div>
+
+    <!-- scroll spacers to drive the animation (extra spacers give each card a dwell window) -->
+    <div class="spacer" data-scene="hero"></div>
+    <div class="spacer" data-scene="fall-about"></div>
+    <div class="spacer" data-scene="fall-about-hold"></div>
+    <div class="spacer" data-scene="fall-exp"></div>
+    <div class="spacer" data-scene="fall-exp-hold"></div>
+    <div class="spacer" data-scene="fall-edu"></div>
+    <div class="spacer" data-scene="fall-edu-hold"></div>
+    <div class="spacer" data-scene="landing"></div>
+  </div>
+
+  <!-- Progress ribbon -->
+  <div class="progress" id="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- Tweaks -->
+  <div id="tweaksPanel" class="tweaks hidden">
+    <div class="tweaks-head">
+      <b>Tweaks</b>
+      <span class="tweaks-hint">toggle in toolbar</span>
+    </div>
+    <label class="tw-row">
+      <span>Sky palette</span>
+      <select id="twPalette">
+        <option value="sunset">Sunset</option>
+        <option value="peach">Peach</option>
+        <option value="berry">Berry</option>
+        <option value="gold">Gold hour</option>
+      </select>
+    </label>
+    <label class="tw-row">
+      <span>Fall speed</span>
+      <input type="range" id="twSpeed" min="0.5" max="2" step="0.1" />
+    </label>
+    <label class="tw-row">
+      <span>Motion effects</span>
+      <input type="checkbox" id="twEffects" />
+    </label>
+    <label class="tw-row">
+      <span>Lagoon time</span>
+      <select id="twLagoon">
+        <option value="day">Day</option>
+        <option value="dusk">Dusk</option>
+      </select>
+    </label>
+  </div>
+
+  <script>
+/* ============================================================
+   Scroll-driven animation controller
+   Scenes, by scroll progress p ∈ [0, 1]:
+   0.00 - 0.20  HERO   : sunset + name, scroll cue
+   0.20 - 0.40  FALL A : character appears, About card
+   0.40 - 0.60  FALL B : Experience card
+   0.60 - 0.80  FALL C : Education card
+   0.80 - 1.00  LANDING: splash, lagoon reveal, contact form
+   ============================================================ */
+
+// ---------- State persistence ----------
+const SAVE_KEY = 'luis-scroll-pos';
+
+// ---------- Tweaks defaults (kept editable via host) ----------
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "sunset",
+  "fallSpeed": 1,
+  "effects": true,
+  "lagoonMode": "dusk"
+}/*EDITMODE-END*/;
+
+let tweaks = { ...TWEAK_DEFAULTS };
+
+// ---------- Build dynamic elements ----------
+function makeCloudSVG(w, h, color) {
+  // rounded bubbly cloud, chunky black outline
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('viewBox', '0 0 300 140');
+  svg.setAttribute('width', w);
+  svg.setAttribute('height', h);
+  svg.innerHTML = `
+    <g>
+      <path d="M30 95
+               C10 95, 10 65, 40 62
+               C38 35, 80 25, 95 50
+               C105 28, 150 28, 160 55
+               C175 32, 225 35, 225 65
+               C260 58, 285 85, 265 105
+               C285 130, 230 135, 210 120
+               C195 135, 150 135, 135 115
+               C115 135, 65 130, 55 115
+               C30 125, 10 112, 30 95 Z"
+            fill="${color}"
+            stroke="#1a1530" stroke-width="5" stroke-linejoin="round"/>
+      <ellipse cx="70" cy="75" rx="18" ry="10" fill="rgba(255,255,255,0.45)"/>
+      <ellipse cx="160" cy="65" rx="22" ry="12" fill="rgba(255,255,255,0.35)"/>
+    </g>`;
+  return svg;
+}
+
+function makeCloud(parent, { left, top, w, color, drift }) {
+  const el = document.createElement('div');
+  el.className = 'cloud';
+  el.style.left = left + '%';
+  el.style.top = top + '%';
+  el.style.width = w + 'px';
+  el.appendChild(makeCloudSVG('100%', 'auto', color));
+  el.dataset.baseTop = top;
+  el.dataset.drift = drift;
+  parent.appendChild(el);
+  return el;
+}
+
+// Seagull SVG
+function makeSeagull(parent, { left, top, dur, delay, size }) {
+  const g = document.createElement('div');
+  g.className = 'seagull';
+  g.style.left = left + '%';
+  g.style.top = top + '%';
+  g.style.animationDuration = dur + 's';
+  g.style.animationDelay = delay + 's';
+  g.innerHTML = `
+    <svg viewBox="0 0 100 40" style="width:${size}px;height:${size*0.4}px">
+      <path class="wing" d="M10 25 Q30 5 50 25 Q70 5 90 25" fill="none" stroke="#1a1530" stroke-width="4" stroke-linecap="round"/>
+    </svg>`;
+  parent.appendChild(g);
+}
+
+// Pine tree SVG (chunky outlined)
+function makePineSVG(h, color1, color2) {
+  return `
+    <svg class="pine" viewBox="0 0 60 120" style="height:${h}px;width:${h*0.5}px">
+      <rect x="26" y="90" width="8" height="28" fill="#6b3a1f" stroke="#1a1530" stroke-width="3"/>
+      <polygon points="30,5 52,45 38,45 56,80 34,80 34,95 26,95 26,80 4,80 22,45 8,45"
+        fill="${color1}" stroke="#1a1530" stroke-width="3.5" stroke-linejoin="round"/>
+      <polygon points="30,12 46,42 36,42 48,68 34,68 34,80 26,80 26,68 12,68 24,42 14,42"
+        fill="${color2}" stroke="#1a1530" stroke-width="2" stroke-linejoin="round" opacity="0.55"/>
+    </svg>`;
+}
+
+// ---------- Populate scene ----------
+function buildScene() {
+  // Clouds — 3 parallax layers
+  const far = document.getElementById('cloudFar');
+  const mid = document.getElementById('cloudMid');
+  const near = document.getElementById('cloudNear');
+
+  const farSet = [
+    { left: 5,  top: 15, w: 180, color: '#ffe9c4', drift: 0.15 },
+    { left: 65, top: 10, w: 220, color: '#fff0d2', drift: 0.2 },
+    { left: 30, top: 28, w: 160, color: '#ffe6d2', drift: 0.18 },
+    { left: 82, top: 40, w: 180, color: '#ffe0cc', drift: 0.16 },
+    { left: 12, top: 60, w: 200, color: '#fed4c0', drift: 0.2 },
+  ];
+  const midSet = [
+    { left: 70, top: 22, w: 260, color: '#fff7e2', drift: 0.35 },
+    { left: 8,  top: 35, w: 300, color: '#fff3d0', drift: 0.38 },
+    { left: 48, top: 50, w: 280, color: '#ffe9c4', drift: 0.4 },
+    { left: 78, top: 65, w: 240, color: '#ffd9b0', drift: 0.36 },
+  ];
+  const nearSet = [
+    { left: -5, top: 55, w: 380, color: '#ffffff', drift: 0.7 },
+    { left: 62, top: 72, w: 360, color: '#fff7e2', drift: 0.75 },
+    { left: 20, top: 82, w: 340, color: '#ffe9c4', drift: 0.8 },
+    { left: 85, top: 88, w: 320, color: '#fff3d0', drift: 0.72 },
+  ];
+
+  farSet.forEach(c => makeCloud(far, c));
+  midSet.forEach(c => makeCloud(mid, c));
+  nearSet.forEach(c => makeCloud(near, c));
+
+  // Speed lines
+  const sl = document.getElementById('speedlines');
+  for (let i = 0; i < 40; i++) {
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.style.left = Math.random() * 100 + '%';
+    line.style.height = (60 + Math.random() * 180) + 'px';
+    line.style.animationDelay = (Math.random() * 0.7) + 's';
+    line.style.animationDuration = (0.4 + Math.random() * 0.5) + 's';
+    line.style.opacity = (0.3 + Math.random() * 0.6).toString();
+    sl.appendChild(line);
+  }
+
+  // Wind particles
+  const wind = document.getElementById('wind');
+  for (let i = 0; i < 26; i++) {
+    const s = document.createElement('div');
+    s.className = 'spark';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.width = (3 + Math.random() * 6) + 'px';
+    s.style.height = s.style.width;
+    s.style.animationDelay = (Math.random() * 1.2) + 's';
+    s.style.animationDuration = (0.8 + Math.random() * 1.2) + 's';
+    s.style.opacity = (0.5 + Math.random() * 0.5).toString();
+    wind.appendChild(s);
+  }
+
+  // Seagulls
+  const g = document.getElementById('seagulls');
+  const gulls = [
+    { left: -10, top: 18, dur: 22, delay: 0, size: 34 },
+    { left: -30, top: 32, dur: 28, delay: 6, size: 28 },
+    { left: -50, top: 10, dur: 35, delay: 12, size: 40 },
+    { left: -15, top: 45, dur: 26, delay: 3, size: 30 },
+    { left: -40, top: 55, dur: 32, delay: 9, size: 36 },
+  ];
+  gulls.forEach(c => makeSeagull(g, c));
+
+  // Pines row — alternating tall and short
+  const pines = document.getElementById('pines');
+  const n = 18;
+  for (let i = 0; i < n; i++) {
+    const h = 120 + (i % 3 === 0 ? 40 : 0) + Math.random() * 30;
+    const shade = i % 2 === 0 ? ['#2f8f44', '#247134'] : ['#3aa256', '#2d8246'];
+    const wrap = document.createElement('div');
+    wrap.style.display = 'flex';
+    wrap.style.alignItems = 'flex-end';
+    wrap.style.flex = '1 0 auto';
+    wrap.innerHTML = makePineSVG(h, shade[0], shade[1]);
+    pines.appendChild(wrap);
+  }
+
+  // Reflections — vertical streaks beneath the pines
+  const refl = document.getElementById('reflections');
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('div');
+    s.style.position = 'absolute';
+    s.style.left = (i / 18) * 100 + '%';
+    s.style.top = '0';
+    s.style.bottom = '0';
+    s.style.width = (3 + Math.random() * 6) + 'px';
+    s.style.background = 'linear-gradient(to bottom, rgba(47,143,68,0.55), rgba(47,143,68,0))';
+    s.style.filter = 'blur(1.5px)';
+    s.style.opacity = (0.35 + Math.random() * 0.35).toString();
+    refl.appendChild(s);
+  }
+}
+
+// ---------- Scroll-driven animation ----------
+const $ = id => document.getElementById(id);
+
+const els = {};
+function cacheEls() {
+  Object.assign(els, {
+    stage: $('stage'),
+    sky: $('sky'),
+    sun: $('sun'),
+    cloudFar: $('cloudFar'),
+    cloudMid: $('cloudMid'),
+    cloudNear: $('cloudNear'),
+    hero: $('hero'),
+    faller: $('faller'),
+    speedlines: $('speedlines'),
+    wind: $('wind'),
+    cards: document.querySelectorAll('.card'),
+    lagoon: $('lagoon'),
+    splash: $('splash'),
+    contact: $('contact'),
+    depthTint: $('depthTint'),
+    progressFill: $('progressFill'),
+    ripples: $('ripples'),
+  });
+}
+
+// easing helpers
+const clamp01 = v => Math.max(0, Math.min(1, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const smoothstep = (a, b, t) => {
+  const x = clamp01((t - a) / (b - a));
+  return x * x * (3 - 2 * x);
+};
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+let lastP = -1;
+let splashedAt = -1;
+
+function updateScene(p) {
+  if (p === lastP) return;
+  lastP = p;
+
+  // --- overall progress bar ---
+  els.progressFill.style.width = (p * 100).toFixed(2) + '%';
+
+  // --- phases ---
+  const pHero  = smoothstep(0.0, 0.18, p); // 0 at hero, 1 when starting to fall
+  const pFall  = smoothstep(0.15, 0.82, p);
+  const pLand  = smoothstep(0.78, 0.95, p);
+
+  // --- hero: slide up, fade away, scale a bit ---
+  const heroOut = clamp01(p / 0.18);
+  els.hero.style.opacity = String(1 - heroOut);
+  els.hero.style.transform =
+    `translateY(${-heroOut * 30}vh) scale(${1 - heroOut * 0.1})`;
+
+  // --- sky: shift gradient as you fall deeper (warm -> cool) ---
+  const skyShift = clamp01((p - 0.15) / 0.7);
+  const hueRot = -skyShift * 50; // warm -> cool
+  const bright = 1 - skyShift * 0.15;
+  els.sky.style.filter = `hue-rotate(${hueRot}deg) brightness(${bright})`;
+  // sun sinks behind horizon
+  els.sun.style.transform = `translate(-50%, ${skyShift * 40}vh) scale(${1 - skyShift * 0.3})`;
+  els.sun.style.opacity = String(1 - skyShift * 0.9);
+
+  // --- Parallax clouds rushing UP (we're falling down) ---
+  // Far drifts slowly; near drifts fast. Everything also shifts left a hair.
+  const fallOffset = p * 100; // 0..100
+  const clouds = [
+    { el: els.cloudFar, speed: 1.2 },
+    { el: els.cloudMid, speed: 2.4 },
+    { el: els.cloudNear, speed: 4.0 },
+  ];
+  clouds.forEach(({ el, speed }) => {
+    // vertical offset — clouds push UP as user falls
+    el.style.transform = `translate3d(0, ${-fallOffset * speed}vh, 0)`;
+  });
+
+  // Extra per-cloud shake (wobble with speed for near layer)
+  const intensity = tweaks.effects ? 1 : 0;
+  const wobbleAmp = smoothstep(0.15, 0.6, p) * 6 * intensity;
+  document.querySelectorAll('.cloud-near .cloud').forEach((c, i) => {
+    const wob = Math.sin(p * 20 + i) * wobbleAmp;
+    c.style.transform = `translate3d(${wob}px, 0, 0)`;
+  });
+
+  // --- Faller character ---
+  // appears as you start falling; stays roughly centered, bobbing; enlarges slightly with depth
+  const fallStart = 0.15;
+  const fallEnd   = 0.85;
+  const fp = clamp01((p - fallStart) / (fallEnd - fallStart));
+  const landNow = p > 0.85 ? clamp01((p - 0.85) / 0.07) : 0;
+
+  let fallerScale, fallerY, fallerOp;
+  if (fp > 0) {
+    fallerScale = lerp(0.6, 1.15, easeOutCubic(fp));
+    const bob = Math.sin(p * 40) * 6;
+    fallerY = bob + lerp(-4, 4, fp);
+    fallerOp = 1;
+  } else {
+    fallerScale = 0;
+    fallerY = -60;
+    fallerOp = 0;
+  }
+  // during landing, faller sinks fast, then disappears at splash
+  if (landNow > 0) {
+    fallerScale *= (1 - landNow * 0.5);
+    fallerY += landNow * 30;
+    fallerOp *= (1 - landNow);
+  }
+  const tiltAngle = Math.sin(p * 12) * 6;
+  els.faller.style.transform =
+    `translate(-50%, calc(-50% + ${fallerY}vh)) rotate(${tiltAngle}deg) scale(${fallerScale})`;
+  els.faller.style.opacity = String(fallerOp);
+
+  // --- Speed lines + wind (visible during fall) ---
+  const motionOn = tweaks.effects ? 1 : 0;
+  const motionAmount = smoothstep(0.2, 0.35, p) * (1 - smoothstep(0.78, 0.9, p));
+  els.speedlines.style.opacity = String(motionAmount * motionOn);
+  els.wind.style.opacity = String(motionAmount * motionOn * 0.9);
+
+  // depth tint darker in the middle, lifts at landing
+  const tintAmt = Math.max(0, Math.sin(Math.PI * clamp01((p - 0.15) / 0.7))) * 0.7;
+  els.depthTint.style.opacity = String(tintAmt);
+
+  // --- Cards: enter → HOLD at center → exit, per card ---
+  // Each window gives the card a sustained "dwell" so users can read
+  // without racing the scroll.
+  const cardSpecs = [
+    { el: document.querySelector('.card-about'), enter: 0.17, holdIn: 0.22, holdOut: 0.33, exit: 0.38, side: 1 },
+    { el: document.querySelector('.card-exp'),   enter: 0.40, holdIn: 0.45, holdOut: 0.57, exit: 0.62, side: -1 },
+    { el: document.querySelector('.card-edu'),   enter: 0.64, holdIn: 0.69, holdOut: 0.80, exit: 0.84, side: 1 },
+  ];
+  cardSpecs.forEach(({ el, enter, holdIn, holdOut, exit, side }) => {
+    let op, ty, rot, sway, scl;
+    if (p < enter || p > exit) {
+      op = 0;
+      ty = p < enter ? 60 : -60;
+      rot = side * -4;
+      sway = 0;
+      scl = 0.9;
+    } else if (p < holdIn) {
+      // entering
+      const t = easeOutCubic((p - enter) / (holdIn - enter));
+      op = t;
+      ty = lerp(60, 0, t);
+      rot = lerp(side * -6, 0, t);
+      sway = lerp(side * 6, 0, t);
+      scl = lerp(0.88, 1, t);
+    } else if (p < holdOut) {
+      // HOLD — sits still, centered, fully visible
+      op = 1;
+      ty = 0;
+      rot = 0;
+      sway = 0;
+      scl = 1;
+    } else {
+      // exiting
+      const t = easeOutCubic((p - holdOut) / (exit - holdOut));
+      op = 1 - t;
+      ty = lerp(0, -60, t);
+      rot = lerp(0, side * 6, t);
+      sway = lerp(0, side * -6, t);
+      scl = lerp(1, 0.9, t);
+    }
+    el.style.opacity = op.toFixed(3);
+    el.style.transform =
+      `translate(calc(-50% + ${sway}vw), ${ty}vh) rotate(${rot}deg) scale(${scl})`;
+  });
+
+  // --- Landing / Lagoon reveal ---
+  const lagoonShow = smoothstep(0.82, 0.93, p);
+  els.lagoon.style.opacity = lagoonShow.toFixed(3);
+  if (lagoonShow > 0.98) els.lagoon.classList.add('active');
+  else els.lagoon.classList.remove('active');
+
+  // splash trigger — fire once as user crosses 0.87
+  if (p >= 0.86 && p <= 0.92 && splashedAt < 0) {
+    triggerSplash();
+    splashedAt = p;
+  } else if (p < 0.82) {
+    splashedAt = -1;
+    els.splash.classList.remove('play');
+  }
+
+  // contact rises after splash
+  const contactIn = smoothstep(0.9, 0.99, p);
+  els.contact.style.opacity = contactIn.toFixed(3);
+  els.contact.style.transform = `translateY(${(1 - contactIn) * 20}vh)`;
+}
+
+function triggerSplash() {
+  els.splash.classList.remove('play');
+  // force reflow then re-add
+  void els.splash.offsetWidth;
+  els.splash.classList.add('play');
+
+  // Random ripples
+  for (let i = 0; i < 4; i++) {
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    const cx = 50 + (Math.random() - 0.5) * 20;
+    const cy = 30 + Math.random() * 50;
+    r.style.left = cx + '%';
+    r.style.top = cy + '%';
+    r.style.width = '40px';
+    r.style.height = '10px';
+    r.style.animationDelay = (i * 0.18) + 's';
+    els.ripples.appendChild(r);
+    requestAnimationFrame(() => r.classList.add('play'));
+    setTimeout(() => r.remove(), 3200);
+  }
+}
+
+// ---------- Mobile detection ----------
+const isMobile = () => window.matchMedia('(max-width: 720px)').matches;
+
+// ---------- Scroll loop ----------
+function onScroll() {
+  if (isMobile()) {
+    // Linear mode — just persist scroll position, no animation.
+    try { localStorage.setItem(SAVE_KEY, String(window.scrollY)); } catch (e) {}
+    return;
+  }
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const rawP = max > 0 ? window.scrollY / max : 0;
+  // Apply fall-speed tweak — accelerate/decelerate the middle section
+  // Clamp so user can still reach the end.
+  const p = clamp01(rawP);
+  updateScene(p);
+
+  // persist
+  try { localStorage.setItem(SAVE_KEY, String(window.scrollY)); } catch (e) {}
+}
+
+// ---------- Contact form ----------
+function wireForm() {
+  const form = document.getElementById('contactForm');
+  const ok = document.getElementById('formOk');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = (data.get('name') || '').toString().trim();
+    const message = (data.get('message') || '').toString().trim();
+    if (!name || !message) {
+      form.reportValidity();
+      return;
+    }
+    const subject = encodeURIComponent(`LuisExpert.dev message from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name}`);
+    window.location.href = `mailto:hello@luisexpert.dev?subject=${subject}&body=${body}`;
+    ok.classList.add('show');
+    form.reset();
+    setTimeout(() => ok.classList.remove('show'), 4000);
+  });
+}
+
+// ---------- Tweaks ----------
+function applyTweaks() {
+  // palette
+  const root = document.documentElement;
+  const palettes = {
+    sunset: ['#ffd29a', '#ff9a7a', '#ff6f8a', '#8e5aa0', '#4a3a7a'],
+    peach:  ['#ffe6c2', '#ffb38a', '#ff8ea6', '#b67ac6', '#5f4c8f'],
+    berry:  ['#ffc2a8', '#ff7d8e', '#c75aa0', '#6a3c8f', '#2b1f55'],
+    gold:   ['#fff0c2', '#ffd16a', '#ff9e5e', '#9c5d94', '#4a3968'],
+  };
+  const pal = palettes[tweaks.palette] || palettes.sunset;
+  pal.forEach((c, i) => root.style.setProperty('--sky-' + (i + 1), c));
+
+  // effects
+  if (!tweaks.effects) {
+    els.speedlines.style.opacity = '0';
+    els.wind.style.opacity = '0';
+  }
+
+  // lagoon
+  if (tweaks.lagoonMode === 'dusk') els.lagoon.classList.add('dusk');
+  else els.lagoon.classList.remove('dusk');
+
+  // reflect in controls
+  const p = document.getElementById('twPalette');
+  const s = document.getElementById('twSpeed');
+  const ef = document.getElementById('twEffects');
+  const l = document.getElementById('twLagoon');
+  if (p) p.value = tweaks.palette;
+  if (s) s.value = tweaks.fallSpeed;
+  if (ef) ef.checked = tweaks.effects;
+  if (l) l.value = tweaks.lagoonMode;
+}
+
+function wireTweaks() {
+  const panel = document.getElementById('tweaksPanel');
+
+  const setKeys = (edits) => {
+    Object.assign(tweaks, edits);
+    applyTweaks();
+    onScroll();
+    try {
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    } catch (e) {}
+  };
+
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') panel.classList.remove('hidden');
+    if (d.type === '__deactivate_edit_mode') panel.classList.add('hidden');
+  });
+  // Announce availability
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
+
+  document.getElementById('twPalette').addEventListener('change', e =>
+    setKeys({ palette: e.target.value }));
+  document.getElementById('twSpeed').addEventListener('input', e =>
+    setKeys({ fallSpeed: parseFloat(e.target.value) }));
+  document.getElementById('twEffects').addEventListener('change', e =>
+    setKeys({ effects: e.target.checked }));
+  document.getElementById('twLagoon').addEventListener('change', e =>
+    setKeys({ lagoonMode: e.target.value }));
+}
+
+// ---------- Restore scroll ----------
+function restoreScroll() {
+  try {
+    const y = parseFloat(localStorage.getItem(SAVE_KEY) || '0');
+    if (y > 0 && Number.isFinite(y)) window.scrollTo(0, y);
+  } catch (e) {}
+}
+
+// ---------- Boot ----------
+document.addEventListener('DOMContentLoaded', () => {
+  buildScene();
+  cacheEls();
+  applyTweaks();
+  wireForm();
+  wireTweaks();
+  restoreScroll();
+  onScroll();
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  window.addEventListener('resize', onScroll);
+});
+
+</script>
+</body>
+</html>
