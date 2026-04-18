@@ -1,39 +1,37 @@
 # luis-website
 
-This template should help get you started developing with Vue 3 in Vite.
+A static site built with plain HTML, CSS, and JavaScript. Vite is used only as a bundler to minify and optimize the output for production; deployment is handled by GitHub Actions to GitHub Pages.
 
-## Recommended IDE Setup
+## Layout
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+```
+src/
+  index.html   — entry page
+  style.css    — plain CSS
+  script.js    — plain JS module
+public/        — static assets copied as-is (favicon, images, etc.)
+vite.config.js — Vite config (root: 'src', outDir: '../dist', base: './')
+```
 
-## Type Support for `.vue` Imports in TS
+Edit the three files in `src/`. Drop any unprocessed static assets into `public/`.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Develop
 
 ```sh
 bun install
+bun run dev
 ```
 
-### Compile and Hot-Reload for Development
+Open the URL shown in the terminal. Changes hot-reload.
 
-```sh
-bun dev
-```
-
-### Type-Check, Compile and Minify for Production
+## Build
 
 ```sh
 bun run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Outputs a minified, hashed bundle into `./dist`. Preview the built site locally with `bun run preview`.
 
-```sh
-bun lint
-```
+## Deploy
+
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds and publishes `./dist` to GitHub Pages.
