@@ -1,11 +1,12 @@
 feature: retro-portfolio-redesign
 workflow: sdd
-stage: pr
+stage: qa
 completed:
   - specify
   - plan
   - verify
   - docs_sync
+  - pr
 pending_gate: ""
 branch: feat/retro-portfolio-redesign
 current_slice: ""
@@ -19,7 +20,7 @@ completed_slices:
   - SL4
 upgraded_slices: []
 last_agent: sddkit
-updated: 2026-08-10T20:44:15.520Z
+updated: 2026-08-10T20:44:50.639Z
 blockers: []
 artifacts:
   spec: docs/feats/retro-portfolio-redesign/spec.md
@@ -109,7 +110,7 @@ qa:
   pr_comment_url: ""
   pr_ready: false
 pr:
-  url: ""
+  url: https://github.com/luisintosh/bio/pull/1
 roadmap:
   issue: 0
   epic: 0
