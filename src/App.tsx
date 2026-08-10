@@ -4,6 +4,7 @@ import { AboutSection } from './components/AboutSection'
 import { ExperienceSection } from './components/ExperienceSection'
 import { EducationSection } from './components/EducationSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
+import { ContactSection } from './components/ContactSection'
 
 interface AppProps {
   portfolio?: PortfolioContent
@@ -17,6 +18,7 @@ export default function App({ portfolio = defaultPortfolio }: AppProps) {
       <ExperienceSection experience={portfolio.experience} />
       <EducationSection education={portfolio.education} />
       <TestimonialsSection testimonials={portfolio.testimonials} />
+      <ContactSection contact={portfolio.contact} />
     </main>
   )
 }
