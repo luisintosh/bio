@@ -12,9 +12,10 @@ escalation: 0
 green_attempts: 0
 completed_slices:
   - SL1
+  - SL2
 upgraded_slices: []
 last_agent: sddkit
-updated: 2026-08-10T19:09:04.653Z
+updated: 2026-08-10T20:13:33.844Z
 blockers: []
 artifacts:
   spec: docs/feats/retro-portfolio-redesign/spec.md
@@ -39,37 +40,52 @@ review:
       severity: minor
       category: quality
       summary: "SL1: Legacy Mario image assets (src/shot.jpg, src/mobile-about.jpg)
-        still exist after plan called for deletion."
-      fix: Delete src/shot.jpg and src/mobile-about.jpg.
+        still exist."
+      fix: Delete unused Mario image assets.
     - id: FH3
       file: README.md
       line: 3
       severity: minor
       category: quality
       summary: "SL1: README still documents deleted plain HTML/CSS/JS stack."
-      fix: Update README.md for React + Vite scaffold.
-    - id: FH4
-      file: package.json
-      line: 20
-      severity: minor
-      category: test
-      summary: "SL1: Missing Testing Library deps planned for component tests."
-      fix: Add @testing-library/react and @testing-library/jest-dom.
-    - id: FH5
-      file: vitest.config.ts
-      line: 1
-      severity: minor
-      category: test
-      summary: "SL1: vitest.config.ts does not extend vite.config.ts React plugin."
-      fix: Merge Vite React plugin into Vitest config.
+      fix: Update README for React + Vite.
     - id: FH6
       file: package.json
       line: 9
       severity: minor
       category: quality
-      summary: "SL1: package.json lacks lint and typecheck scripts from AGENTS.md
-        target."
+      summary: "SL1: package.json lacks lint and typecheck scripts."
       fix: Add lint and typecheck scripts.
+    - id: FH7
+      file: package.json
+      line: 28
+      severity: minor
+      category: quality
+      summary: "SL2: unused happy-dom dep while Vitest uses jsdom."
+      fix: Remove happy-dom or switch environment.
+    - id: FH8
+      file: src/components/TestimonialsSection.tsx
+      line: 15
+      severity: minor
+      category: quality
+      summary: "SL2: React keys from display names/titles may collide."
+      fix: Use stable synthetic keys.
+    - id: FH9
+      file: src/index.css
+      line: 1
+      severity: minor
+      category: quality
+      summary: "SL2: no prefers-reduced-motion rules yet (NFR3; SL4 owns E2E)."
+      fix: Add reduced-motion reset when adding motion.
+    - id: F1
+      file: src/components/App.test.tsx
+      line: 15
+      severity: minor
+      category: test
+      summary: "SL2: @S1 Lead Full-Stack regex uses ASCII hyphen; Hero secondaryRole
+        uses en-dash — assertion currently matches Experience title instead.
+        Tests pass; tighten within(hero) + en-dash-aware regex."
+      fix: Scope @S1 role assert to hero and accept U+2013 or hyphen.
 qa:
   status: ""
   cycles: 0
