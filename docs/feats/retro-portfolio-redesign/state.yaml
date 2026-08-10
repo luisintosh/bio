@@ -1,12 +1,13 @@
 feature: retro-portfolio-redesign
 workflow: sdd
-stage: qa
+stage: complete
 completed:
   - specify
   - plan
   - verify
   - docs_sync
   - pr
+  - qa
 pending_gate: ""
 branch: feat/retro-portfolio-redesign
 current_slice: ""
@@ -20,7 +21,7 @@ completed_slices:
   - SL4
 upgraded_slices: []
 last_agent: sddkit
-updated: 2026-08-10T20:44:50.639Z
+updated: 2026-08-10T20:49:52.445Z
 blockers: []
 artifacts:
   spec: docs/feats/retro-portfolio-redesign/spec.md
@@ -100,15 +101,15 @@ review:
         Tests pass; tighten within(hero) + en-dash-aware regex."
       fix: Scope @S1 role assert to hero and accept U+2013 or hyphen.
 qa:
-  status: ""
+  status: clean
   cycles: 0
-  scenarios_total: 0
-  scenarios_passed: 0
+  scenarios_total: 23
+  scenarios_passed: 16
   scenarios_failed: 0
   findings: []
-  report_path: ""
-  pr_comment_url: ""
-  pr_ready: false
+  report_path: /tmp/qa-retro-portfolio-redesign/report.md
+  pr_comment_url: https://github.com/luisintosh/bio/pull/1#issuecomment-5245803928
+  pr_ready: true
 pr:
   url: https://github.com/luisintosh/bio/pull/1
 roadmap:
