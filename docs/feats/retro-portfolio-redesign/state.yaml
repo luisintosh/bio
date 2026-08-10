@@ -1,8 +1,9 @@
 feature: retro-portfolio-redesign
 workflow: sdd
-stage: spec_gate
+stage: plan_gate
 completed:
   - specify
+  - plan
 pending_gate: ""
 branch: feat/retro-portfolio-redesign
 current_slice: ""
@@ -12,7 +13,7 @@ green_attempts: 0
 completed_slices: []
 upgraded_slices: []
 last_agent: sddkit
-updated: 2026-08-10T04:43:22.123Z
+updated: 2026-08-10T18:57:04.676Z
 blockers: []
 artifacts:
   spec: docs/feats/retro-portfolio-redesign/spec.md
@@ -21,7 +22,7 @@ artifacts:
     - docs/feats/retro-portfolio-redesign/contracts/contact.feature
     - docs/feats/retro-portfolio-redesign/contracts/seo-and-delivery.feature
     - docs/feats/retro-portfolio-redesign/contracts/responsive.feature
-  plan: ""
+  plan: docs/feats/retro-portfolio-redesign/plan.md
   docs: []
 verification:
   status: ""
