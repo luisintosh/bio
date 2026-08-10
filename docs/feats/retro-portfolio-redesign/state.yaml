@@ -1,0 +1,50 @@
+feature: retro-portfolio-redesign
+workflow: sdd
+stage: spec_gate
+completed:
+  - specify
+pending_gate: ""
+branch: feat/retro-portfolio-redesign
+current_slice: ""
+slice_phase: ""
+escalation: 0
+green_attempts: 0
+completed_slices: []
+upgraded_slices: []
+last_agent: sddkit
+updated: 2026-08-10T04:43:22.123Z
+blockers: []
+artifacts:
+  spec: docs/feats/retro-portfolio-redesign/spec.md
+  contracts:
+    - docs/feats/retro-portfolio-redesign/contracts/portfolio-content.feature
+    - docs/feats/retro-portfolio-redesign/contracts/contact.feature
+    - docs/feats/retro-portfolio-redesign/contracts/seo-and-delivery.feature
+    - docs/feats/retro-portfolio-redesign/contracts/responsive.feature
+  plan: ""
+  docs: []
+verification:
+  status: ""
+  commands: []
+review:
+  iterations: 0
+  status: ""
+  findings: []
+  deferred_findings: []
+qa:
+  status: ""
+  cycles: 0
+  scenarios_total: 0
+  scenarios_passed: 0
+  scenarios_failed: 0
+  findings: []
+  report_path: ""
+  pr_comment_url: ""
+  pr_ready: false
+pr:
+  url: ""
+roadmap:
+  issue: 0
+  epic: 0
+  feature_id: ""
+  path: ""
