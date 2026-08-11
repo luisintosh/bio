@@ -1,0 +1,50 @@
+.portfolio {
+  position: relative;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.portfolio__frame {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  animation: portfolio-in 0.6s ease;
+}
+
+.portfolio__frame + .portfolio__frame {
+  border-top: var(--border);
+}
+
+.portfolio__frame picture {
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+
+.portfolio__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.portfolio__caption {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: var(--ink);
+  background: var(--white);
+  border-top: 1px solid rgba(28, 28, 28, 0.12);
+}
+
+@keyframes portfolio-in {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
