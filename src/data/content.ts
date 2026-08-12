@@ -3,7 +3,7 @@ export const profile = {
   firstName: 'Luis',
   lastName: 'Mendieta',
   role: 'Full-Stack Engineer',
-  bio: 'I like building things people can trust. These days that means AI workflows with LangGraph and LangChain, plus skills for coding tools where a human stays in the loop before anything ships. I also enjoy teaching what I learn and helping teammates level up. On the product side I still ship with React, Next.js, Node, and NestJS, and I settle into a team quickly.',
+  bio: 'Full-stack engineer working in TypeScript end to end: Next.js and React on the front, Node.js and NestJS on the back. I take features from specification to production and work with the people who have the problem, not at the far end of a handoff. I use AI tooling to move faster and review everything it writes before it ships. Wherever I land, I ramp fast, share the knowledge with people around me, and surface risks while they’re still cheap to fix.',
   image: '/assets/links/profile',
 }
 
@@ -71,14 +71,14 @@ export const experience = [
     company: 'ACT',
     dates: '2025 - Now',
     summary:
-      'Own the GenAI content platform across the stack: LangGraph agent backends and Next.js / React frontends. Ship reliable AI workflows, partner with Product and UX, and mentor engineers in an AI-first team.',
+      'Own a GenAI content platform end to end in TypeScript: LangGraph agent services behind Next.js / React apps. Turn requirements into shipped features with Product and UX, keep humans reviewing what the models produce, and mentor engineers on AI-assisted workflows.',
   },
   {
     role: 'Lead Frontend Engineer',
     company: 'Ultra',
     dates: '2020 - 2025',
     summary:
-      'Promoted from Senior to Lead. Ran frontend architecture for a crypto wallet, NFT marketplace, and Electron game launcher. Also shipped NestJS / Kafka services when the team needed it.',
+      'Promoted from Senior to Lead over five years. Owned frontend architecture for a crypto wallet, NFT marketplace, and Electron game launcher, and shipped NestJS / Kafka services when the backend needed hands. Set standards, reviewed code, and kept releases on schedule.',
   },
 ]
 
@@ -178,6 +178,6 @@ export const contact = {
   eyebrow: 'Contact:',
   title: "Let's talk",
   intro:
-    'Hiring for Senior / Lead Full-Stack or AI Engineering? I’d love to hear about the role. Drop a short note below and let’s connect.',
+    'Hiring for a Senior or Lead Full-Stack role? Tell me about the team and the problem you’re solving, and I’ll come back with how I’d approach it.',
 }
 
