@@ -39,6 +39,13 @@ type LinkItem = {
 }
 
 export const links: LinkItem[] = [
+  {
+    title: 'SoloDev skill set',
+    description: 'Ship features with an AI team.',
+    href: 'https://github.com/luisintosh/solodev',
+    image: '/assets/links/solodev',
+    imageBg: '#1a0b3b',
+  },
   // {
   //   title: 'Now: ACT',
   //   description:
