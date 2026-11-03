@@ -46,6 +46,13 @@ export const links: LinkItem[] = [
     image: '/assets/links/solodev',
     imageBg: '#1a0b3b',
   },
+  {
+    title: 'When Are You',
+    description: 'One live clock for your team across time zones.',
+    href: 'https://whenareyou.luism.dev/',
+    image: '/assets/links/whenareyou',
+    imageBg: '#f5f1ff',
+  },
   // {
   //   title: 'Now: ACT',
   //   description:
