@@ -5,13 +5,15 @@
   align-items: center;
   justify-content: space-between;
   gap: 4px 24px;
-  padding: 28px 40px 12px;
+  padding: 22px 40px 6px;
   background: var(--white);
   font-size: 14px;
 }
 
 .site-nav__name {
-  padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-size: 16px;
   font-weight: 500;
 }
@@ -23,8 +25,10 @@
 }
 
 .site-nav__links a {
-  display: inline-block;
-  padding: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5ch;
+  min-height: 44px;
   text-underline-offset: 4px;
 }
 
@@ -37,15 +41,19 @@
 
 @media (max-width: 640px) {
   .site-nav {
-    padding: 24px 16px 8px;
+    padding: 18px 16px 4px;
   }
 
+  /* Padding widens short links to a 44px target; the margin keeps the row aligned. */
   .site-nav__links {
-    gap: 0 12px;
+    gap: 0;
+    margin-inline: -8px;
     font-size: 12px;
   }
 
   .site-nav__links a {
-    padding: 12px 0;
+    justify-content: center;
+    min-width: 44px;
+    padding-inline: 8px;
   }
 }

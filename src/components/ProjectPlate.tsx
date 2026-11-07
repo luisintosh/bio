@@ -2,6 +2,7 @@ import type { CaseStudySlug } from '../data/content'
 import { ActGraph } from './ActGraph'
 import { Corner } from './decor/Decor'
 import { Picture } from './Picture'
+import { SoloDevFlow } from './SoloDevFlow'
 import './ProjectPlate.css'
 
 /** The visual beside each project on the homepage. */
@@ -11,15 +12,7 @@ export function ProjectPlate({ slug }: { slug: CaseStudySlug }) {
       <Corner position="tl" />
       <Corner position="br" />
       {slug === 'act' && <ActGraph />}
-      {slug === 'solodev' && (
-        <Picture
-          src="/assets/links/solodev"
-          alt="SoloDev artwork: a developer at a desk with a team of AI shadows behind them"
-          className="plate__art"
-          width={960}
-          height={960}
-        />
-      )}
+      {slug === 'solodev' && <SoloDevFlow />}
       {slug === 'ultra' && (
         <Picture
           src="/assets/portfolio/ultra-crypto-wallet"

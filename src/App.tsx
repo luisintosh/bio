@@ -1,4 +1,3 @@
-import { Contact } from './components/Contact'
 import { Experience } from './components/Experience'
 import { Intro } from './components/Intro'
 import { Principles } from './components/Principles'
@@ -14,7 +13,6 @@ export default function App() {
       <Principles />
       <Experience />
       <Testimonials />
-      <Contact />
     </SiteShell>
   )
 }

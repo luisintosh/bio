@@ -1,4 +1,5 @@
 import { lazy, type ReactNode, Suspense, useEffect, useState } from 'react'
+import { Contact } from './Contact'
 import { SiteNav } from './SiteNav'
 
 const GalaxyBackground = lazy(() =>
@@ -48,11 +49,22 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="galaxy" aria-hidden />
       )}
 
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+
       <div className="page">
-        <main className="column">
-          <SiteNav />
-          {children}
-        </main>
+        <div className="column">
+          <header>
+            <SiteNav />
+          </header>
+          <main id="main" tabIndex={-1}>
+            {children}
+          </main>
+          <footer>
+            <Contact />
+          </footer>
+        </div>
       </div>
     </>
   )

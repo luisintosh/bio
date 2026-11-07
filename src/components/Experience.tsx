@@ -4,9 +4,7 @@ import './Experience.css'
 export function Experience() {
   return (
     <section id="experience" className="experience">
-      <div className="experience__label">
-        <h2 className="eyebrow">Experience:</h2>
-      </div>
+      <h2 className="section-title experience__title">Experience</h2>
       <ul className="experience__list">
         {experience.map((item) => (
           <li key={item.company} className="experience__item">
@@ -20,10 +18,12 @@ export function Experience() {
         ))}
       </ul>
 
-      <div className="experience__label">
-        <h2 className="eyebrow">Education:</h2>
-      </div>
-      <p className="experience__note">{education}</p>
+      <h2 className="section-title experience__title">Education</h2>
+      <ul className="experience__education">
+        {education.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
     </section>
   )
 }

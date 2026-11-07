@@ -26,34 +26,58 @@ export function Projects() {
   return (
     <section id="work" className="projects" aria-label="Selected work">
       {caseStudies.map((study) => (
-        <a key={study.slug} className="project" href={`/work/${study.slug}/`}>
+        <div key={study.slug} className="project">
+          {/* An overlay link, so its name is the title rather than the whole row. */}
+          <a
+            className="project__link"
+            href={`/work/${study.slug}/`}
+            aria-labelledby={`project-${study.slug}`}
+          />
           <div className="project__copy">
             <ProjectHover />
             <p className="project__name">{study.name}</p>
-            <h2 className="project__title">{study.title}</h2>
-            <p className="project__summary">{study.summary}</p>
-            <span className="project__cta">Read the case study</span>
+            <h2 id={`project-${study.slug}`} className="project__title">
+              {study.title}
+            </h2>
+            <p className="project__summary">
+              {study.summary}
+              {study.ownership && ` ${study.ownership}`}
+            </p>
+            <ul className="project__decisions">
+              {study.decisions.map((decision) => (
+                <li key={decision.title}>{decision.title}</li>
+              ))}
+            </ul>
+            <span className="project__cta" aria-hidden>
+              Read the case study
+            </span>
           </div>
           <ProjectPlate slug={study.slug} />
-        </a>
+        </div>
       ))}
 
-      <a
-        className="project project--small"
-        href={whenAreYou.href}
-        target="_blank"
-        rel="noreferrer"
-      >
+      <div className="project project--small">
+        <a
+          className="project__link"
+          href={whenAreYou.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-labelledby="project-when-are-you"
+        />
         <div className="project__copy">
           <ProjectHover external />
-          <h2 className="project__title">{whenAreYou.title}</h2>
+          <h2 id="project-when-are-you" className="project__title">
+            {whenAreYou.title}
+          </h2>
           <p className="project__summary">{whenAreYou.description}</p>
-          <span className="project__cta">Open the app</span>
+          <span className="project__cta" aria-hidden>
+            Open the app
+          </span>
         </div>
         <div className="project__thumb">
           <Picture src={whenAreYou.image} alt={whenAreYou.imageAlt} />
         </div>
-      </a>
+      </div>
     </section>
   )
 }

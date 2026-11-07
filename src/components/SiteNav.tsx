@@ -6,12 +6,12 @@ const LINKS = [
   { label: 'Work', href: '/#work' },
   { label: 'Experience', href: '/#experience' },
   // Every page has a contact section, so this one stays on the current page.
-  { label: 'Contact', href: '#contact' },
+  { label: 'Email', href: '#contact' },
 ]
 
 const EXTERNAL_LINKS = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/luismendieta' },
-  { label: 'YouTube', href: 'https://www.youtube.com/@Luisintosh' },
+  { label: 'GitHub', href: 'https://github.com/luisintosh' },
 ]
 
 export function SiteNav() {
