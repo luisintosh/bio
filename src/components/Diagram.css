@@ -5,6 +5,10 @@
   border-bottom: var(--border);
 }
 
+.diagram--solodev {
+  background: var(--solodev);
+}
+
 .diagram__flow {
   list-style: none;
   max-width: 680px;

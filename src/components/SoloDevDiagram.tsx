@@ -6,7 +6,7 @@ const LENSES = ['Evidence', 'Contract', 'Correctness', 'Security', 'Design', 'UI
 /** The full /mission flow from the SoloDev README, for the case study. */
 export function SoloDevDiagram() {
   return (
-    <figure className="diagram">
+    <figure className="diagram diagram--solodev">
       <Corner position="tl" />
       <Corner position="tr" />
       <Corner position="bl" />
