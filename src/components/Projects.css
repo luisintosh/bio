@@ -167,7 +167,8 @@
 
 @media (max-width: 767px) {
   .project {
-    grid-template-columns: 1fr;
+    /* minmax(0, …) keeps the column at the screen width whatever its content asks for. */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .project--small {

@@ -41,7 +41,11 @@
 }
 
 @media (max-width: 767px) {
+  /* A plain square from the width. Stretching here let Safari size the plate from its
+     own height, which widened the whole row past the screen. */
   .plate {
+    align-self: start;
+    min-width: 0;
     padding: 24px;
     border-left: none;
     border-top: var(--border);
@@ -50,5 +54,10 @@
   .plate--act,
   .plate--solodev {
     padding: 0;
+  }
+
+  .plate .flow-graph {
+    height: auto;
+    aspect-ratio: 1;
   }
 }
