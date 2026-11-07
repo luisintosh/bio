@@ -1,49 +1,33 @@
-import { type FormEvent, useRef } from 'react'
 import { contact } from '../data/content'
 import { Corner } from './decor/Decor'
 import './Contact.css'
 
-const MAILTO = 'yo@luism.dev'
-const SUBJECT = '[luism.dev] Contact Form'
+const MAILTO = `mailto:${contact.email}?subject=${encodeURIComponent(contact.subject)}`
 
 export function Contact() {
-  const messageRef = useRef<HTMLTextAreaElement>(null)
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const message = messageRef.current?.value.trim() ?? ''
-    if (!message) return
-
-    const href = `mailto:${MAILTO}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(message)}`
-    window.location.href = href
-  }
-
   return (
-    <section className="contact">
+    <section id="contact" className="contact">
       <Corner position="tl" />
       <Corner position="tr" />
 
-      <div className="contact__intro">
-        <p className="eyebrow">{contact.eyebrow}</p>
-        <h2 className="section-title">{contact.title}</h2>
-        <p className="body-text contact__copy">{contact.intro}</p>
-      </div>
+      <h2 className="section-title contact__title">{contact.title}</h2>
+      <p className="contact__location">{contact.location}</p>
 
-      <form className="contact__form" onSubmit={handleSubmit}>
-        <label className="contact__field">
-          <span>Message*</span>
-          <textarea
-            ref={messageRef}
-            name="Message"
-            placeholder="Role, company, and a short note"
-            rows={6}
-            required
-          />
-        </label>
-        <button type="submit" className="contact__submit">
-          Send
-        </button>
-      </form>
+      <a className="contact__button" href={MAILTO}>
+        Email me
+      </a>
+      <p className="contact__address">{contact.email}</p>
+      <p className="contact__resume">{contact.resume}</p>
+
+      <ul className="contact__links">
+        {contact.links.map((link) => (
+          <li key={link.name}>
+            <a href={link.href} target="_blank" rel="noreferrer">
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
 
       <Corner position="bl" />
       <Corner position="br" />

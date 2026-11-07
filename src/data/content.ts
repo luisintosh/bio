@@ -1,149 +1,166 @@
 export const profile = {
-  label: 'Name:',
-  firstName: 'Luis',
-  lastName: 'Mendieta',
-  role: 'Full-Stack Engineer',
-  bio: 'Full-stack engineer working in TypeScript end to end: Next.js and React on the front, Node.js and NestJS on the back. I take features from specification to production and work with the people who have the problem, not at the far end of a handoff. I use AI tooling to move faster and review everything it writes before it ships. Wherever I land, I ramp fast, share the knowledge with people around me, and surface risks while they’re still cheap to fix.',
+  name: 'Luis Mendieta',
+  role: 'Senior GenAI Full-Stack Engineer',
+  headline: 'I build AI workflows that people can trust in production.',
+  subhead:
+    'LangGraph, RAG, and full-stack TypeScript, shipped in education and healthcare.',
   image: '/assets/links/profile',
 }
 
-export const socials = [
-  {
-    name: 'X',
-    href: 'https://x.com/luisintosh',
-    icon: 'x',
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/luismendieta',
-    icon: 'linkedin',
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/luisintosh',
-    icon: 'github',
-  },
-  {
-    name: 'Dev.to',
-    href: 'https://dev.to/luisintosh',
-    icon: 'devto',
-  },
-] as const
+export type CaseStudySlug = 'act' | 'solodev' | 'ultra'
 
-type LinkItem = {
+type Decision = {
   title: string
-  description: string
-  href: string
-  image: string
-  imageBg: string
+  body: string
 }
 
-export const links: LinkItem[] = [
+export type CaseStudy = {
+  slug: CaseStudySlug
+  name: string
+  title: string
+  summary: string
+  intro: string
+  decisions: Decision[]
+  scope: string
+  link?: { label: string; href: string }
+}
+
+export const caseStudies: CaseStudy[] = [
   {
-    title: 'SoloDev skill set',
-    description: 'Ship features with an AI team.',
-    href: 'https://github.com/luisintosh/solodev',
-    image: '/assets/links/solodev',
-    imageBg: '#1a0b3b',
+    slug: 'act',
+    name: 'ACT',
+    title: 'Fresh exam questions from a multi-agent LangGraph platform',
+    summary: 'In production pilot with Biology, English, and Math specialists.',
+    intro:
+      'A GenAI platform that keeps exams supplied with new questions. I owned features end to end on a team of three, from the LangGraph agents to the NestJS API and the Next.js app that content specialists use. The platform is private, so this page covers its architecture.',
+    decisions: [
+      {
+        title: 'Specialized agents instead of one big prompt',
+        body: 'Question generation, passage generation, and question review each have their own prompt and rules. That let us combine agents for different topics.',
+      },
+      {
+        title: 'Regenerate first, then ask a person',
+        body: 'A RAG search compares each new question against the question bank. Text that is 80% similar or more gets regenerated. If it happens again in the second round, it goes to a specialist.',
+      },
+      {
+        title: 'Specialists make the final call',
+        body: 'No item is accepted without specialist review. Audit logs on scheduling keep AI-driven content work traceable.',
+      },
+    ],
+    scope:
+      'Asynchronous drafting and review pipelines with durable checkpoints, collision-safe job scheduling, live progress over authenticated Socket.IO, RAG over textbook PDFs for passages, IMS QTI export, and Jest and Playwright coverage for concurrency edge cases.',
   },
   {
-    title: 'When Are You',
-    description: 'One live clock for your team across time zones.',
-    href: 'https://whenareyou.luism.dev/',
-    image: '/assets/links/whenareyou',
-    imageBg: '#f5f1ff',
+    slug: 'solodev',
+    name: 'SoloDev',
+    title: 'From one approved spec to a reviewed, tested pull request',
+    summary: 'Open source. Works with Claude Code, Codex, and Cursor.',
+    intro:
+      'A skill set that gives coding agents the checks they can’t give themselves. I first built this approach for my team, where all three engineers adopted it. SoloDev is my public version, and I use it every day.',
+    decisions: [
+      {
+        title: 'No code before an approved spec',
+        body: 'You approve the requirements, acceptance scenarios, and plan first. The solodev check command fails any branch that has code before that approval.',
+      },
+      {
+        title: 'The reviewer never wrote the code',
+        body: 'A reviewer with fresh context runs each test on the old code, where it must fail, and on the new code, where it must pass. Then it reads the diff through lenses such as security and correctness.',
+      },
+      {
+        title: 'Budgets instead of endless loops',
+        body: 'Each step gets a limit: two implementation attempts, one fix round, and one re-review. When a budget runs out, the work comes back to you.',
+      },
+    ],
+    scope:
+      'Three commands: /mission ships one feature, /strategy plans a roadmap, and /gen-docs maps a repo once.',
+    link: {
+      label: 'View SoloDev on GitHub',
+      href: 'https://github.com/luisintosh/solodev',
+    },
   },
-  // {
-  //   title: 'Now: ACT',
-  //   description:
-  //     'Lead Full-Stack AI Engineer. Building the GenAI content platform end to end: LangGraph backends, Next.js / React apps, production workflows.',
-  //   href: 'https://www.luism.dev/',
-  //   image: '/assets/links/portfolio',
-  //   imageBg: '#d4a017',
-  // },
-  // {
-  //   title: 'Before: Ultra',
-  //   description:
-  //     'Grew from Senior to Lead Frontend over 5 years. Crypto wallets, NFT marketplace, Electron launcher, plus NestJS / Kafka services.',
-  //   href: 'https://www.luism.dev/',
-  //   image: '/assets/links/art-prints',
-  //   imageBg: '#bedfe8',
-  // },
-  // {
-  //   title: 'Certifications',
-  //   description:
-  //     'GCP Professional Cloud Developer, AWS Developer Associate, GenAI tracks (IBM & DeepLearning.AI), CS degree from TecNM.',
-  //   href: 'https://www.linkedin.com/in/luismendieta/',
-  //   image: '/assets/links/portraits',
-  //   imageBg: '#d4c8e0',
-  // },
+  {
+    slug: 'ultra',
+    name: 'Ultra',
+    title: 'A crypto wallet that unlocks as simply as signing in',
+    summary:
+      'Principal-level ownership of React architecture and API contracts, for products serving thousands of active users.',
+    intro:
+      'A Chrome extension wallet connected to an NFT marketplace. I led the frontend architecture and guided a two-engineer frontend team through planning, code review, and delivery.',
+    decisions: [
+      {
+        title: 'Sign-in unlocks the wallet',
+        body: 'People unlock the wallet with their account sign-in, and decryption keys are never stored in the frontend.',
+      },
+      {
+        title: 'A small command interface for the wallet',
+        body: 'A JavaScript Proxy exposes the commands the wallet makes available to the marketplace.',
+      },
+      {
+        title: 'Encrypted messages between marketplace and wallet',
+        body: 'The two communicate through Chrome Extensions API events, with the messages encrypted, following the Chrome Developers best practices.',
+      },
+    ],
+    scope:
+      'An Electron game launcher with offline capabilities and auto-updates, NestJS and GraphQL services, Apache Kafka message flows, and CI/CD pipelines.',
+  },
+]
+
+export const principles = [
+  {
+    title: 'Deterministic shell, non-deterministic core',
+    body: 'Checkpoints, schedules, and validation wrap every LLM call.',
+  },
+  {
+    title: 'Specialized agents over one giant prompt',
+    body: 'Each has its own rules, so they can be combined for different topics.',
+  },
+  {
+    title: 'Retry once, then ask a person',
+    body: 'A near-duplicate is regenerated first, then flagged to a specialist on the second round.',
+  },
+  {
+    title: 'People make the final call',
+    body: 'Specialists approve every item, and an audit trail makes the decisions traceable.',
+  },
 ]
 
 export const experience = [
   {
-    role: 'Lead Full-Stack AI Engineer',
-    company: 'ACT',
-    dates: '2025 - Now',
+    role: 'Senior Full-Stack Engineer',
+    company: 'MaxiCare',
+    dates: 'Sep 2026 - Now',
     summary:
-      'Own a GenAI content platform end to end in TypeScript: LangGraph agent services behind Next.js / React apps. Turn requirements into shipped features with Product and UX, keep humans reviewing what the models produce, and mentor engineers on AI-assisted workflows.',
+      'Building AI workflows into an AI-native EMR for skilled nursing and assisted living, so nurses and doctors spend less time on the platform and more with residents.',
   },
   {
-    role: 'Lead Frontend Engineer',
-    company: 'Ultra',
-    dates: '2020 - 2025',
+    role: 'Senior Full-Stack Software Engineer, AI Platform',
+    company: 'ACT (via Coforge)',
+    dates: 'Sep 2025 - Aug 2026',
     summary:
-      'Promoted from Senior to Lead over five years. Owned frontend architecture for a crypto wallet, NFT marketplace, and Electron game launcher, and shipped NestJS / Kafka services when the backend needed hands. Set standards, reviewed code, and kept releases on schedule.',
+      'Built a GenAI assessment platform with LangGraph, NestJS, and Next.js on a team of three, now in production pilot with content specialists.',
+  },
+  {
+    role: 'Senior to Principal Frontend Engineer',
+    company: 'Ultra (via Coforge)',
+    dates: 'Mar 2020 - Sep 2025',
+    summary:
+      'Led React architecture for a crypto wallet and NFT marketplace serving thousands of active users, and delivered backend services with NestJS, GraphQL, and Kafka.',
   },
 ]
 
-export const education = [
-  {
-    title: 'GenAI Training Path: Agentic Track',
-    school: 'IBM · Coursera',
-    year: '2025',
-  },
-  {
-    title: 'GenAI Training Path: Technical Track',
-    school: 'DeepLearning.AI · Coursera',
-    year: '2025',
-  },
-  {
-    title: 'Professional Cloud Developer',
-    school: 'Google Cloud',
-    year: '2024',
-  },
-  {
-    title: 'AWS Certified Developer Associate',
-    school: 'Amazon Web Services',
-    year: '2022',
-  },
-  {
-    title: 'Computer Systems Engineer',
-    school: 'Tecnológico Nacional de México (TecNM)',
-    year: '2017',
-  },
-]
+export const education =
+  'B.S. Computer Systems Engineering, Tecnológico Nacional de México. Google Cloud Professional Cloud Developer. AWS Certified Developer Associate. GenAI training, technical and agentic tracks, from DeepLearning.AI and IBM.'
 
-export const portfolioItems = [
-  {
-    title: 'Ultra Crypto Wallet - Chrome Extension',
-    image: '/assets/portfolio/ultra-crypto-wallet',
-  },
-  {
-    title: 'Ultra Game Store - Frontend',
-    image: '/assets/portfolio/ultra-game-store',
-  },
-  {
-    title: 'Nebula Design System - Frontend',
-    image: '/assets/portfolio/nebula-design-system',
-  },
-]
+export const whenAreYou = {
+  title: 'When Are You',
+  description: 'One live clock for your team across time zones.',
+  href: 'https://whenareyou.luism.dev/',
+  image: '/assets/links/whenareyou',
+  imageAlt: 'When Are You home screen with a 24-hour team clock',
+}
 
 export const testimonials = {
-  eyebrow: 'Recommendations:',
   title: 'From people I’ve worked with',
-  intro:
-    'Managers and teammates on LinkedIn. Short takes below; full write-ups are on my profile.',
   items: [
     {
       name: 'Lance Blackstone',
@@ -189,9 +206,13 @@ export const testimonials = {
 }
 
 export const contact = {
-  eyebrow: 'Contact:',
-  title: "Let's talk",
-  intro:
-    'Hiring for a Senior or Lead Full-Stack role? Tell me about the team and the problem you’re solving, and I’ll come back with how I’d approach it.',
+  email: 'yo@luism.dev',
+  subject: '[luism.dev] Hello',
+  title: 'Let’s talk about senior GenAI full-stack roles.',
+  location: 'Remote from Mexico.',
+  resume: 'Want my resume? Ask in your email and I’ll send it over.',
+  links: [
+    { name: 'GitHub', href: 'https://github.com/luisintosh' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/luismendieta' },
+  ],
 }
-
