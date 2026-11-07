@@ -7,53 +7,56 @@
 
 .flow-graph text {
   text-anchor: middle;
+  fill: var(--ink);
 }
 
 .flow-graph__node rect {
-  fill: #0b2a55;
-  stroke: #4fe3ff;
-  stroke-width: 1.5;
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 1;
 }
 
 .flow-graph__node text {
-  fill: #fff;
   font-size: 14px;
   font-weight: 500;
 }
 
+.flow-graph__node .flow-graph__small {
+  font-size: 14px;
+  font-weight: 300;
+}
+
 .flow-graph__hub {
-  fill: #fff;
   font-size: 14px;
   font-weight: 500;
 }
 
 .flow-graph .flow-graph__loop {
-  fill: #ff9fb0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 300;
   text-anchor: end;
 }
 
-.flow-graph__note {
-  fill: #ff9fb0;
+.flow-graph .flow-graph__side text {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 300;
+  text-anchor: end;
 }
 
+.flow-graph .flow-graph__side .flow-graph__side--right {
+  text-anchor: start;
+}
+
+.flow-graph .flow-graph__note {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* A person decides here: the one solid block in each diagram. */
 .flow-graph__node--gate rect {
-  fill: #ffc94d;
-  stroke: #fff0c2;
+  fill: var(--ink);
 }
 
-.flow-graph__node--gate text {
-  fill: #1c1c1c;
-}
-
-.flow-graph__node .flow-graph__small {
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.flow-graph__node--export rect {
-  stroke: #ffc94d;
+.flow-graph .flow-graph__node--gate text {
+  fill: var(--white);
 }

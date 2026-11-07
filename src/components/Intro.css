@@ -118,12 +118,6 @@
   line-height: 1.2;
 }
 
-.intro__polaroid-year {
-  font-size: 14px;
-  color: #6f6f6f;
-  line-height: 1;
-}
-
 @media (max-width: 640px) {
   .intro {
     display: flex;

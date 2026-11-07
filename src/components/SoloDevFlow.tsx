@@ -1,4 +1,4 @@
-import { CORAL, CYAN, FlowDefs, FlowPulse, GOLD } from './FlowGraph'
+import { FlowDefs, FlowPulse, INK } from './FlowGraph'
 
 const PATH_IMPLEMENT = 'M220 80 L220 118'
 const PATH_REVIEW = 'M220 174 L220 212'
@@ -12,7 +12,7 @@ const STEPS = [
   { title: 'Pull request', detail: 'You merge', y: 306, gate: true },
 ]
 
-/** The SoloDev workflow in the same language as the ACT graph; gold marks a human gate. */
+/** The SoloDev workflow in the same language as the ACT graph; solid blocks mark a human gate. */
 export function SoloDevFlow() {
   const animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -27,19 +27,19 @@ export function SoloDevFlow() {
 
       <rect width="440" height="440" fill="url(#solodev-grid)" />
 
-      <g fill="none" stroke={CYAN} strokeWidth="1.5" filter="url(#solodev-glow)">
-        <path d={PATH_IMPLEMENT} stroke={GOLD} />
+      <g fill="none" stroke={INK} strokeWidth="1">
+        <path d={PATH_IMPLEMENT} />
         <path d={PATH_REVIEW} />
-        <path d={PATH_MERGE} stroke={GOLD} />
-        <path d={PATH_FIX} stroke={CORAL} strokeDasharray="5 5" />
+        <path d={PATH_MERGE} />
+        <path d={PATH_FIX} strokeDasharray="2 4" />
       </g>
 
       {animate && (
         <>
-          <FlowPulse path={PATH_IMPLEMENT} color={GOLD} dur={1.8} />
+          <FlowPulse path={PATH_IMPLEMENT} dur={1.8} />
           <FlowPulse path={PATH_REVIEW} dur={1.8} begin={0.6} />
-          <FlowPulse path={PATH_FIX} color={CORAL} dur={3} begin={1} />
-          <FlowPulse path={PATH_MERGE} color={GOLD} dur={1.8} begin={1.2} />
+          <FlowPulse path={PATH_FIX} dur={3} begin={1} />
+          <FlowPulse path={PATH_MERGE} dur={1.8} begin={1.2} />
         </>
       )}
 
@@ -49,11 +49,7 @@ export function SoloDevFlow() {
           className={`flow-graph__node${step.gate ? ' flow-graph__node--gate' : ''}`}
           transform={`translate(90 ${step.y})`}
         >
-          <rect
-            width="260"
-            height="56"
-            filter={step.gate ? 'url(#solodev-glow)' : undefined}
-          />
+          <rect width="260" height="56" />
           <text x="130" y="24">{step.title}</text>
           <text className="flow-graph__small" x="130" y="43">{step.detail}</text>
         </g>

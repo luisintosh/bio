@@ -179,7 +179,7 @@ export const testimonials = {
       quote:
         'Luis was easy to work with: skilled, collaborative, and responsive. He listened well, found good solutions, and met commitments. I’d work with him again in a heartbeat.',
       avatar: '/assets/avatars/lance.png',
-      href: 'https://www.linkedin.com/in/lancemblackstone',
+      href: 'https://www.linkedin.com/in/luismendieta/details/recommendations/?detailScreenTabIndex=0',
     },
     {
       name: 'Axel Ayigbede',
@@ -195,7 +195,7 @@ export const testimonials = {
       quote:
         'An exceptional teammate. Excelled in front-end architecture with a strong UX and security focus. His expertise and collaborative spirit made a real difference.',
       avatar: '/assets/avatars/paulo.png',
-      href: 'https://www.linkedin.com/in/pflima',
+      href: 'https://www.linkedin.com/in/luismendieta/details/recommendations/?detailScreenTabIndex=0',
     },
     {
       name: 'Oleg Statnii',
