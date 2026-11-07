@@ -3,7 +3,7 @@ import { contact } from '../data/content'
 import { Corner } from './decor/Decor'
 import './Contact.css'
 
-const MAILTO = 'yo@uism.dev'
+const MAILTO = 'yo@luism.dev'
 const SUBJECT = '[luism.dev] Contact Form'
 
 export function Contact() {
