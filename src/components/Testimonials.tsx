@@ -1,49 +1,91 @@
+import { useRef, useState } from 'react'
 import { testimonials } from '../data/content'
 import './Testimonials.css'
 
 export function Testimonials() {
-  const loop = [...testimonials.items, ...testimonials.items]
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [index, setIndex] = useState(0)
+  const count = testimonials.items.length
+
+  function goTo(next: number) {
+    const track = trackRef.current
+    if (!track) return
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    track.scrollTo({
+      left: next * track.clientWidth,
+      behavior: reduced ? 'auto' : 'smooth',
+    })
+  }
+
+  function handleScroll() {
+    const track = trackRef.current
+    if (!track) return
+    setIndex(Math.round(track.scrollLeft / track.clientWidth))
+  }
 
   return (
-    <section className="testimonials">
-      <div className="testimonials__intro">
-        <p className="eyebrow">{testimonials.eyebrow}</p>
-        <h2 className="section-title">{testimonials.title}</h2>
-        <p className="body-text testimonials__copy">{testimonials.intro}</p>
+    <section
+      className="testimonials"
+      aria-roledescription="carousel"
+      aria-labelledby="recommendations-title"
+    >
+      <div className="testimonials__header">
+        <h2 id="recommendations-title" className="section-title">
+          {testimonials.title}
+        </h2>
+        <div className="testimonials__controls">
+          <button
+            type="button"
+            onClick={() => goTo(index - 1)}
+            disabled={index === 0}
+            aria-label="Previous recommendation"
+          >
+            ‹
+          </button>
+          <span aria-live="polite">
+            {index + 1} of {count}
+          </span>
+          <button
+            type="button"
+            onClick={() => goTo(index + 1)}
+            disabled={index === count - 1}
+            aria-label="Next recommendation"
+          >
+            ›
+          </button>
+        </div>
       </div>
 
-      <div className="testimonials__viewport">
-        <div className="testimonials__track">
-          {loop.map((item, i) => (
-            <a
-              key={`${item.name}-${i}`}
-              className="testimonial-card"
-              href={item.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="testimonial-card__author">
-                <img
-                  src={item.avatar}
-                  alt=""
-                  className="testimonial-card__avatar"
-                  width={48}
-                  height={48}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div>
-                  <h3>{item.name}</h3>
-                  <p>{item.company}</p>
-                </div>
-              </div>
-              <div className="testimonial-card__quote-mark" aria-hidden>
-                ”
-              </div>
-              <p className="testimonial-card__quote">{item.quote}</p>
-            </a>
-          ))}
-        </div>
+      <div ref={trackRef} className="testimonials__track" onScroll={handleScroll}>
+        {testimonials.items.map((item, i) => (
+          <figure
+            key={item.name}
+            className="testimonial"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} of ${count}`}
+          >
+            <blockquote className="testimonial__quote">{item.quote}</blockquote>
+            <figcaption className="testimonial__author">
+              <img
+                src={item.avatar}
+                alt=""
+                className="testimonial__avatar"
+                width={48}
+                height={48}
+                loading="lazy"
+                decoding="async"
+              />
+              <span>
+                <a href={item.href} target="_blank" rel="noreferrer">
+                  {item.name}
+                </a>
+                <br />
+                {item.company}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   )
