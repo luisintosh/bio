@@ -1,24 +1,24 @@
-/* Square on every screen size so all project rows match. */
+/* Square by default; on desktop it stretches to fill the row so no strip shows when the copy runs taller. */
 .plate {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: center;
+  align-self: stretch;
   width: 100%;
   aspect-ratio: 1;
   padding: 36px;
   border-left: var(--border);
 }
 
-.plate .decor-corner {
+.plate--ultra .decor-corner {
   border-color: var(--white);
 }
 
 .plate--act,
 .plate--solodev {
   padding: 0;
-  background: #06152f;
+  background: var(--paper);
 }
 
 .plate--ultra {

@@ -24,7 +24,6 @@ export function Intro() {
         <div className="intro__polaroid-meta">
           {/* A non-breaking hyphen keeps "Full-Stack" on one line in the narrow caption. */}
           <p className="intro__polaroid-role">{profile.role.replace('-', '‑')}</p>
-          <p className="intro__polaroid-year">{new Date().getFullYear()}</p>
         </div>
       </div>
 
