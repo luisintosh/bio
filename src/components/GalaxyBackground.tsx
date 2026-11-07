@@ -75,13 +75,9 @@ function shouldSkipHeavyBackground(): boolean {
   return false
 }
 
-function whenIdle(cb: () => void): () => void {
-  const ric = window.requestIdleCallback?.bind(window)
-  if (ric) {
-    const id = ric(() => cb(), { timeout: 2500 })
-    return () => window.cancelIdleCallback?.(id)
-  }
-  const id = window.setTimeout(cb, 200)
+/** Starts on the next tick; the opening shot's cloud cover hides the load. */
+function runNow(cb: () => void): () => void {
+  const id = window.setTimeout(cb, 0)
   return () => window.clearTimeout(id)
 }
 
@@ -95,10 +91,10 @@ export function GalaxyBackground() {
     if (shouldSkipHeavyBackground()) return
 
     let cancelled = false
-    let cancelIdle = () => {}
+    let cancelStart = () => {}
 
     const start = () => {
-      cancelIdle = whenIdle(() => {
+      cancelStart = runNow(() => {
         if (cancelled || effectRef.current || !rootRef.current) return
 
         void (async () => {
@@ -149,7 +145,7 @@ export function GalaxyBackground() {
       return () => {
         cancelled = true
         document.removeEventListener('visibilitychange', onVisible)
-        cancelIdle()
+        cancelStart()
         effectRef.current?.destroy()
         effectRef.current = null
       }
@@ -159,7 +155,7 @@ export function GalaxyBackground() {
 
     return () => {
       cancelled = true
-      cancelIdle()
+      cancelStart()
       effectRef.current?.destroy()
       effectRef.current = null
     }
