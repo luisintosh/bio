@@ -1,5 +1,5 @@
 import { Corner } from './decor/Decor'
-import './ActDiagram.css'
+import './Diagram.css'
 
 const REVIEWERS = [1, 2, 3, 4, 5]
 

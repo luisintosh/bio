@@ -2,6 +2,7 @@ import { type CaseStudy, caseStudies } from '../data/content'
 import { ActDiagram } from './ActDiagram'
 import { Picture } from './Picture'
 import { SiteShell } from './SiteShell'
+import { SoloDevDiagram } from './SoloDevDiagram'
 import { SoloDevTerminal } from './SoloDevTerminal'
 import './CaseStudyPage.css'
 
@@ -10,17 +11,20 @@ function Visual({ slug }: { slug: CaseStudy['slug'] }) {
 
   if (slug === 'solodev') {
     return (
-      <div className="case__visual case__visual--solodev">
-        <Picture
-          src="/assets/links/solodev"
-          alt="SoloDev artwork: a developer at a desk with a team of AI shadows behind them. Its caption reads: Summon a team of AI “shadows” with one command."
-          className="case__art"
-          width={960}
-          height={960}
-          loading="eager"
-        />
-        <SoloDevTerminal />
-      </div>
+      <>
+        <div className="case__visual case__visual--solodev">
+          <Picture
+            src="/assets/links/solodev"
+            alt="SoloDev artwork: a developer at a desk with a team of AI shadows behind them. Its caption reads: Summon a team of AI “shadows” with one command."
+            className="case__art"
+            width={960}
+            height={960}
+            loading="eager"
+          />
+          <SoloDevTerminal />
+        </div>
+        <SoloDevDiagram />
+      </>
     )
   }
 
