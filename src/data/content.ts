@@ -3,7 +3,12 @@ export const profile = {
   role: 'Senior GenAI Full-Stack Engineer',
   headline: 'I build AI workflows that people can trust in production.',
   subhead:
-    'LangGraph, RAG, and full-stack TypeScript, shipped in education and healthcare.',
+    'LangGraph, RAG, and full-stack TypeScript, for education and healthcare.',
+  location: 'Remote from Mexico',
+  cloudCertifications: [
+    'AWS Certified Developer Associate',
+    'Google Cloud Professional Cloud Developer',
+  ],
   image: '/assets/links/profile',
 }
 
@@ -19,6 +24,8 @@ export type CaseStudy = {
   name: string
   title: string
   summary: string
+  /** Shown on the homepage row when the summary doesn't say what Luis did. */
+  ownership?: string
   intro: string
   decisions: Decision[]
   scope: string
@@ -31,6 +38,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'ACT',
     title: 'Fresh exam questions from a multi-agent LangGraph platform',
     summary: 'In production pilot with Biology, English, and Math specialists.',
+    ownership: 'I owned features end to end on a team of three.',
     intro:
       'A GenAI platform that keeps exams supplied with new questions. I owned features end to end on a team of three, from the LangGraph agents to the NestJS API and the Next.js app that content specialists use. The platform is private, so this page covers its architecture.',
     decisions: [
@@ -108,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
 export const principles = [
   {
     title: 'Deterministic shell, non-deterministic core',
-    body: 'Checkpoints, schedules, and validation wrap every LLM call.',
+    body: 'Checkpoints, schedules, and validation wrap the LLM calls.',
   },
   {
     title: 'Specialized agents over one giant prompt',
@@ -148,8 +156,11 @@ export const experience = [
   },
 ]
 
-export const education =
-  'B.S. Computer Systems Engineering, Tecnológico Nacional de México. Google Cloud Professional Cloud Developer. AWS Certified Developer Associate. GenAI training, technical and agentic tracks, from DeepLearning.AI and IBM.'
+export const education = [
+  'B.S. Computer Systems Engineering, Tecnológico Nacional de México',
+  ...profile.cloudCertifications,
+  'GenAI training, technical and agentic tracks, from DeepLearning.AI and IBM',
+]
 
 export const whenAreYou = {
   title: 'When Are You',
@@ -171,6 +182,14 @@ export const testimonials = {
       href: 'https://www.linkedin.com/in/lancemblackstone',
     },
     {
+      name: 'Axel Ayigbede',
+      company: 'Engineering Manager @ Ultra',
+      quote:
+        'Essential to our Ultra team: always ready to help, full of ideas, and great at building relationships. A passionate, motivated teammate I highly recommend.',
+      avatar: '/assets/avatars/axel.png',
+      href: 'https://www.linkedin.com/in/luismendieta/details/recommendations/?detailScreenTabIndex=0',
+    },
+    {
       name: 'Paulo Ferreira',
       company: 'Lead Backend @ Ultra',
       quote:
@@ -184,14 +203,6 @@ export const testimonials = {
       quote:
         'Professional and proactive, with deep knowledge across many technologies. An explorer who proposes strong solutions, and a genuine team player. Highly recommend Luis!',
       avatar: '/assets/avatars/oleg.png',
-      href: 'https://www.linkedin.com/in/luismendieta/details/recommendations/?detailScreenTabIndex=0',
-    },
-    {
-      name: 'Axel Ayigbede',
-      company: 'Engineering Manager @ Ultra',
-      quote:
-        'Essential to our Ultra team: always ready to help, full of ideas, and great at building relationships. A passionate, motivated teammate I highly recommend.',
-      avatar: '/assets/avatars/axel.png',
       href: 'https://www.linkedin.com/in/luismendieta/details/recommendations/?detailScreenTabIndex=0',
     },
     {
@@ -209,10 +220,12 @@ export const contact = {
   email: 'yo@luism.dev',
   subject: '[luism.dev] Hello',
   title: 'Let’s talk about senior GenAI full-stack roles.',
-  location: 'Remote from Mexico.',
+  location: `${profile.location}.`,
   resume: 'Want my resume? Ask in your email and I’ll send it over.',
   links: [
     { name: 'GitHub', href: 'https://github.com/luisintosh' },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/luismendieta' },
   ],
 }
+
+export const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(contact.subject)}`

@@ -1,8 +1,6 @@
-import { contact } from '../data/content'
+import { contact, mailto } from '../data/content'
 import { Corner } from './decor/Decor'
 import './Contact.css'
-
-const MAILTO = `mailto:${contact.email}?subject=${encodeURIComponent(contact.subject)}`
 
 export function Contact() {
   return (
@@ -13,7 +11,7 @@ export function Contact() {
       <h2 className="section-title contact__title">{contact.title}</h2>
       <p className="contact__location">{contact.location}</p>
 
-      <a className="contact__button" href={MAILTO}>
+      <a className="contact__button" href={mailto}>
         Email me
       </a>
       <p className="contact__address">{contact.email}</p>
@@ -23,7 +21,7 @@ export function Contact() {
         {contact.links.map((link) => (
           <li key={link.name}>
             <a href={link.href} target="_blank" rel="noreferrer">
-              {link.name}
+              {link.name} <span aria-hidden>↗</span>
             </a>
           </li>
         ))}

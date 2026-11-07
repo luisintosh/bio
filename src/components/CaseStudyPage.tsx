@@ -1,6 +1,5 @@
-import type { CaseStudy } from '../data/content'
+import { type CaseStudy, caseStudies } from '../data/content'
 import { ActDiagram } from './ActDiagram'
-import { Contact } from './Contact'
 import { Picture } from './Picture'
 import { SiteShell } from './SiteShell'
 import { SoloDevTerminal } from './SoloDevTerminal'
@@ -14,7 +13,7 @@ function Visual({ slug }: { slug: CaseStudy['slug'] }) {
       <div className="case__visual case__visual--solodev">
         <Picture
           src="/assets/links/solodev"
-          alt="SoloDev artwork: a developer at a desk with a team of AI shadows behind them"
+          alt="SoloDev artwork: a developer at a desk with a team of AI shadows behind them. Its caption reads: Summon a team of AI “shadows” with one command."
           className="case__art"
           width={960}
           height={960}
@@ -40,6 +39,8 @@ function Visual({ slug }: { slug: CaseStudy['slug'] }) {
 }
 
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
+  const next = caseStudies[(caseStudies.indexOf(study) + 1) % caseStudies.length]
+
   return (
     <SiteShell>
       <article>
@@ -73,8 +74,11 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
           <h2 className="eyebrow case__label">Also:</h2>
           <p className="case__scope">{study.scope}</p>
         </section>
+
+        <a className="case__next" href={`/work/${next.slug}/`}>
+          Next: {next.name}
+        </a>
       </article>
-      <Contact />
     </SiteShell>
   )
 }

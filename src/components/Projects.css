@@ -5,11 +5,23 @@
 }
 
 .project {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
   background: var(--white);
   border-top: var(--border);
   border-bottom: var(--border);
+}
+
+.project__link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.project__link:focus-visible {
+  outline-offset: -3px;
 }
 
 .projects .project:last-child {
@@ -30,16 +42,17 @@
   background: var(--ink);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.22, 1.2, 0.36, 1);
+  transition: transform 0.45s var(--ease);
   pointer-events: none;
 }
 
 .project__name,
 .project__title,
 .project__summary,
+.project__decisions,
 .project__cta {
   position: relative;
-  transition: color 0.35s cubic-bezier(0.22, 1.2, 0.36, 1);
+  transition: color 0.35s var(--ease);
 }
 
 .project__arrow {
@@ -54,9 +67,9 @@
   border: var(--border);
   border-radius: 50%;
   transition:
-    background 0.35s cubic-bezier(0.22, 1.2, 0.36, 1),
-    border-color 0.35s cubic-bezier(0.22, 1.2, 0.36, 1),
-    transform 0.45s cubic-bezier(0.22, 1.2, 0.36, 1);
+    background 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    transform 0.45s var(--ease);
 }
 
 .project__arrow svg {
@@ -86,6 +99,17 @@
   line-height: 1.6;
 }
 
+.project__decisions {
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.project__decisions li {
+  padding: 7px 0;
+  border-top: 1px dotted currentColor;
+}
+
 .project__cta {
   margin-top: auto;
   font-size: 14px;
@@ -94,15 +118,15 @@
   text-underline-offset: 4px;
 }
 
-.project:focus-visible .project__wipe {
+.project__link:is(:focus-visible, :active) ~ .project__copy .project__wipe {
   transform: scaleX(1);
 }
 
-.project:focus-visible :is(.project__name, .project__title, .project__summary, .project__cta) {
+.project__link:is(:focus-visible, :active) ~ .project__copy :is(.project__name, .project__title, .project__summary, .project__decisions, .project__cta) {
   color: #f2f2ed;
 }
 
-.project:focus-visible .project__arrow {
+.project__link:is(:focus-visible, :active) ~ .project__copy .project__arrow {
   background: #f2f2ed;
   border-color: #f2f2ed;
   transform: translateX(3px);
@@ -113,7 +137,7 @@
     transform: scaleX(1);
   }
 
-  .project:hover :is(.project__name, .project__title, .project__summary, .project__cta) {
+  .project:hover :is(.project__name, .project__title, .project__summary, .project__decisions, .project__cta) {
     color: #f2f2ed;
   }
 
@@ -170,6 +194,11 @@
 
   .project__copy {
     padding: 28px 16px 24px;
+  }
+
+  /* The case study carries these on small screens, where rows are already tall. */
+  .project__decisions {
+    display: none;
   }
 
   .project__title {

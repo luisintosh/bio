@@ -30,6 +30,48 @@
   max-width: 34em;
 }
 
+.intro__facts {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.intro__facts > div {
+  display: grid;
+  grid-template-columns: 10ch minmax(0, 1fr);
+  gap: 0 12px;
+  padding: 7px 0;
+  border-top: 1px dotted rgba(28, 28, 28, 0.45);
+}
+
+.intro__facts dt {
+  font-weight: 300;
+}
+
+.intro__facts dd {
+  font-weight: 500;
+}
+
+.intro__facts dd span {
+  display: block;
+}
+
+.intro__email {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.intro__email:hover {
+  color: var(--accent);
+}
+
 .intro__photo-wrap {
   position: relative;
   background: #ddd;
@@ -71,7 +113,7 @@
 }
 
 .intro__polaroid-role {
-  font-size: 10px;
+  font-size: 12px;
   text-transform: uppercase;
   line-height: 1.2;
 }

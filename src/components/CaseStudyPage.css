@@ -33,9 +33,10 @@
 }
 
 .case__link {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 6px 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 12px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: underline;
@@ -122,7 +123,27 @@
   line-height: 1.7;
 }
 
+.case__next {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 0 40px;
+  border-top: var(--border);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.case__next:hover {
+  color: var(--accent);
+}
+
 @media (max-width: 720px) {
+  .case__next {
+    padding: 0 16px;
+  }
+
   .case__header {
     padding: 20px 16px 32px;
   }
