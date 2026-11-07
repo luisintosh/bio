@@ -18,7 +18,17 @@
 .plate--act,
 .plate--solodev {
   padding: 0;
-  background: var(--paper);
+}
+
+/* One color per project, matching its case study diagram. */
+.plate--act {
+  --flow-pulse: #0b2a55;
+  background: var(--mat);
+}
+
+.plate--solodev {
+  --flow-pulse: #3b1d8f;
+  background: var(--solodev);
 }
 
 .plate--ultra {

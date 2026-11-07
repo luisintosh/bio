@@ -60,3 +60,8 @@
 .flow-graph .flow-graph__node--gate text {
   fill: var(--white);
 }
+
+/* Each plate sets --flow-pulse so the diagrams read as separate projects. */
+.flow-graph__pulse {
+  fill: var(--flow-pulse, var(--accent));
+}
