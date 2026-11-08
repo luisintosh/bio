@@ -2,58 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<!-- Source for public/og-image.jpg (1200×630). Steps to re-render are next to the og:image tag in index.html. -->
+<!-- Source for public/og-image-2.jpg (2400×1260). Steps to re-render are next to the og:image tag in index.html. -->
 <meta name="robots" content="noindex" />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
+  /* Laid out at 1200×630 and captured at 2× (2400×1260). LinkedIn shows it about 550px wide,
+     so every size here shrinks to under half: keep text 40px or larger. */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
     font-family: 'JetBrains Mono', monospace;
     color: #1c1c1c;
     background:
-      radial-gradient(ellipse 520px 220px at 12% 92%, rgba(255,255,255,.55), transparent 70%),
-      radial-gradient(ellipse 600px 240px at 88% 8%, rgba(255,255,255,.45), transparent 70%),
-      radial-gradient(ellipse 380px 160px at 70% 100%, rgba(255,255,255,.35), transparent 70%),
+      radial-gradient(ellipse 520px 220px at 12% 96%, rgba(255,255,255,.6), transparent 70%),
+      radial-gradient(ellipse 600px 240px at 88% 4%, rgba(255,255,255,.5), transparent 70%),
       #68b8d7;
-    display: grid;
-    place-items: center;
+    padding: 22px;
   }
   .card {
-    position: relative;
-    width: 1040px;
-    height: 470px;
+    height: 100%;
     background: #fff;
-    box-shadow: 0 12px 40px rgba(0,0,0,.18);
-    padding: 52px 56px;
+    box-shadow: 0 10px 32px rgba(0,0,0,.18);
+    padding: 40px 36px 40px 52px;
     display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 56px;
+    grid-template-columns: 1fr 450px;
+    gap: 36px;
     align-items: center;
   }
-  .name { font-size: 22px; font-weight: 500; }
-  .role { margin-top: 6px; font-size: 18px; font-weight: 300; }
+  .text { display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
+  .name { font-size: 40px; font-weight: 500; letter-spacing: -0.02em; }
   h1 {
-    margin-top: 40px;
-    font-size: 50px;
+    font-size: 58px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: -0.03em;
-    line-height: 1;
+    line-height: 1.02;
   }
   .url {
-    margin-top: 40px;
-    padding-top: 14px;
-    border-top: 1px dotted rgba(28,28,28,.45);
-    font-size: 18px;
+    padding-top: 16px;
+    border-top: 2px dotted rgba(28,28,28,.45);
+    font-size: 36px;
     color: #2352de;
     font-weight: 500;
   }
   .polaroid {
     transform: rotate(2deg);
     background: #fff;
-    padding: 16px 16px 48px;
-    box-shadow: 3px 4px 0 rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.16);
+    padding: 18px 18px 56px;
+    box-shadow: 3px 4px 0 rgba(0,0,0,.08), 0 10px 28px rgba(0,0,0,.2);
   }
   .polaroid img {
     display: block;
@@ -62,19 +58,18 @@
     object-fit: cover;
     filter: grayscale(1) contrast(1.05);
   }
-  .polaroid p { margin-top: 10px; font-size: 13px; text-transform: uppercase; line-height: 1.2; }
 </style>
 </head>
 <body>
   <div class="card">
-    <div>
+    <div class="text">
       <p class="name">Luis Mendieta</p>
-      <p class="role">Senior GenAI Full‑Stack Engineer</p>
       <h1>I build AI workflows that people can trust in production.</h1>
       <p class="url">luism.dev</p>
     </div>
     <div class="polaroid">
-      <img src="assets/links/profile.jpg" alt="" />
+      <!-- The 1024px copy of the profile photo, so it stays sharp at 2×. -->
+      <img src="preview-image.jpg" alt="" />
     </div>
   </div>
 </body>
