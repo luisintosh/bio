@@ -1,10 +1,12 @@
 export const profile = {
   name: 'Luis Mendieta',
-  role: 'Senior GenAI Full-Stack Engineer',
-  headline: 'I build AI workflows that people can trust in production.',
+  role: 'Senior Full-Stack AI Engineer',
+  headline: 'Full-stack AI engineer.\nI ship what works.',
   subhead:
-    'LangGraph, RAG, and full-stack TypeScript, for education and healthcare.',
-  location: 'Remote from Mexico',
+    'I build AI into real products, and plain software when that’s the better fix. I start with the people who have the problem, prototype fast, and ship to production.',
+  location: 'Remote from San Luis Potosí, Mexico (UTC−6)',
+  experience: 'Building software since 2018',
+  stack: 'TypeScript, React, Next.js, NestJS, LangGraph, RAG, Docker, Kubernetes',
   cloudCertifications: [
     'AWS Certified Developer Associate',
     'Google Cloud Professional Cloud Developer',
@@ -36,27 +38,31 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'act',
     name: 'ACT',
-    title: 'Fresh exam questions from a multi-agent LangGraph platform',
+    title: 'A two-person prototype that became an AI exam platform',
     summary: 'In production pilot with Biology, English, and Math specialists.',
-    ownership: 'I owned features end to end on a team of three.',
+    ownership: 'I co-built the first prototype, then owned features end to end on a team of three.',
     intro:
-      'A GenAI platform that keeps exams supplied with new questions. I owned features end to end on a team of three, from the LangGraph agents to the NestJS API and the Next.js app that content specialists use. The platform is private, so this page covers its architecture.',
+      'Content specialists at ACT needed help drafting exam items. A teammate and I worked out the idea with stakeholders and built a prototype: a workflow that chains a set of prompts to write a first draft of an item. It was approved, and we grew it into a platform that covers more of the specialists’ work, with passage generation, reviews through different lenses, and a RAG check that keeps new questions from duplicating old ones. I owned features end to end, from the LangGraph agents to the NestJS API, the Next.js app the specialists use, and the deployment to AWS. The platform is private, so this page covers its architecture.',
     decisions: [
       {
+        title: 'Prove one workflow before building a platform',
+        body: 'We started with a single job, drafting a first version of an item, and showed it to stakeholders. Passages, reviews, and duplicate checks came only after they approved it.',
+      },
+      {
         title: 'Specialized agents instead of one big prompt',
-        body: 'Question generation, passage generation, and question review each have their own prompt and rules. That let us combine agents for different topics.',
+        body: 'Question generation, passage generation, and question review each have their own prompt and rules. Because each agent does one job, we could combine them for different subjects instead of rewriting one giant prompt each time.',
       },
       {
         title: 'Regenerate first, then ask a person',
-        body: 'A RAG search compares each new question against the question bank. Text that is 80% similar or more gets regenerated. If it happens again in the second round, it goes to a specialist.',
+        body: 'Every new question is compared against the question bank with a RAG similarity search. If it’s 80% similar or more to an existing one, the agent tries again. If the second try is still too close, a specialist decides.',
       },
       {
         title: 'Specialists make the final call',
-        body: 'No item is accepted without specialist review. Audit logs on scheduling keep AI-driven content work traceable.',
+        body: 'No item is accepted without specialist review. Every scheduled job is logged, so we can always say what produced an item and when.',
       },
     ],
     scope:
-      'Asynchronous drafting and review pipelines with durable checkpoints, collision-safe job scheduling, live progress over authenticated Socket.IO, RAG over textbook PDFs for passages, IMS QTI export, and Jest and Playwright coverage for concurrency edge cases.',
+      'Drafting and review jobs that resume from checkpoints, job scheduling that avoids collisions, live progress over authenticated Socket.IO, RAG over textbook PDFs for passages, IMS QTI export so items load into other platforms, Jest and Playwright tests for concurrency edge cases, and Docker images deployed to a Kubernetes cluster on AWS through the company’s Jenkins pipelines.',
   },
   {
     slug: 'solodev',
@@ -64,7 +70,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'From one approved spec to a reviewed, tested pull request',
     summary: 'Open source. Works with Claude Code, Codex, and Cursor.',
     intro:
-      'A skill set that gives coding agents the checks they can’t give themselves. I first built this approach for my team, where all three engineers adopted it. SoloDev is my public version, and I use it every day.',
+      'When executives at ACT asked our team to start using AI, nobody told us how to do it well. I brought in a customized version of the open source Superpowers skill set, and it worked until it started using up our monthly token budget too fast. So I researched on my own time and built SoloDev, a workflow that uses fewer tokens and still does the work well. I kept developing it at MaxiCare with one goal: automate the busywork, so my time goes to understanding the problem, proposing a solution, and understanding the code the agents write. I use it every day.',
     decisions: [
       {
         title: 'No code before an approved spec',
@@ -91,9 +97,9 @@ export const caseStudies: CaseStudy[] = [
     name: 'Ultra',
     title: 'A crypto wallet that unlocks as simply as signing in',
     summary:
-      'Principal-level ownership of React architecture and API contracts, for products serving thousands of active users.',
+      'Over five years I went from senior to principal engineer, owning the React architecture and the API contracts between frontend and backend. Thousands of people used it.',
     intro:
-      'A Chrome extension wallet connected to an NFT marketplace. I led the frontend architecture and guided a two-engineer frontend team through planning, code review, and delivery.',
+      'A Chrome extension wallet connected to an NFT marketplace. I owned the frontend architecture and led two frontend engineers through planning, code review, and delivery.',
     decisions: [
       {
         title: 'Sign-in unlocks the wallet',
@@ -105,37 +111,37 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: 'Encrypted messages between marketplace and wallet',
-        body: 'The two communicate through Chrome Extensions API events, with the messages encrypted, following the Chrome Developers best practices.',
+        body: 'The marketplace and the wallet only talk through Chrome extension message events, and every message is encrypted.',
       },
     ],
     scope:
-      'An Electron game launcher with offline capabilities and auto-updates, NestJS and GraphQL services, Apache Kafka message flows, and CI/CD pipelines.',
+      'Beyond the wallet: an Electron game launcher that works offline and updates itself, NestJS and GraphQL services, Apache Kafka message flows, and CI/CD pipelines.',
   },
 ]
 
 export const principles = [
   {
-    title: 'Deterministic shell, non-deterministic core',
-    body: 'Checkpoints, schedules, and validation wrap the LLM calls.',
+    title: 'Understand the problem first',
+    body: 'Talk to the people doing the work before writing code.',
   },
   {
-    title: 'Specialized agents over one giant prompt',
-    body: 'Each has its own rules, so they can be combined for different topics.',
+    title: 'Pick the simplest thing that works',
+    body: 'Automation, RAG, an agent, or no AI at all.',
   },
   {
-    title: 'Retry once, then ask a person',
-    body: 'A near-duplicate is regenerated first, then flagged to a specialist on the second round.',
+    title: 'Prototype before building it properly',
+    body: 'Prove the idea with real users, then harden it.',
   },
   {
-    title: 'People make the final call',
-    body: 'Specialists approve every item, and an audit trail makes the decisions traceable.',
+    title: 'Keep people in control',
+    body: 'Checks, review, and audit logs around anything a model produces.',
   },
 ]
 
 export const experience = [
   {
     role: 'Senior Full-Stack Engineer',
-    company: 'MaxiCare',
+    company: 'MaxiCare (via Coforge)',
     dates: 'Sep 2026 - Now',
     summary:
       'Building AI workflows into an AI-native EMR for skilled nursing and assisted living, so nurses and doctors spend less time on the platform and more with residents.',
@@ -145,14 +151,14 @@ export const experience = [
     company: 'ACT (via Coforge)',
     dates: 'Sep 2025 - Aug 2026',
     summary:
-      'Built a GenAI assessment platform with LangGraph, NestJS, and Next.js on a team of three, now in production pilot with content specialists.',
+      'Co-built the first prototype with a teammate, then grew it into a GenAI assessment platform with LangGraph, NestJS, and Next.js, deployed to AWS. Now in production pilot with content specialists.',
   },
   {
     role: 'Senior to Principal Frontend Engineer',
     company: 'Ultra (via Coforge)',
     dates: 'Mar 2020 - Sep 2025',
     summary:
-      'Led React architecture for a crypto wallet and NFT marketplace serving thousands of active users, and delivered backend services with NestJS, GraphQL, and Kafka.',
+      'Grew from senior to principal. Led React architecture for a crypto wallet and NFT marketplace serving thousands of active users, and delivered backend services with NestJS, GraphQL, and Kafka.',
   },
 ]
 
@@ -219,9 +225,8 @@ export const testimonials = {
 export const contact = {
   email: 'yo@luism.dev',
   subject: '[luism.dev] Hello',
-  title: 'Let’s talk about senior GenAI full-stack roles.',
+  title: 'Want to build something together?',
   location: `${profile.location}.`,
-  resume: 'Want my resume? Ask in your email and I’ll send it over.',
   links: [
     { name: 'GitHub', href: 'https://github.com/luisintosh' },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/luismendieta' },

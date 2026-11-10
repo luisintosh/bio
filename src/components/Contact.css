@@ -40,13 +40,6 @@
   user-select: all;
 }
 
-.contact__resume {
-  margin-top: 6px;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.6;
-}
-
 .contact__links {
   display: flex;
   gap: 20px;

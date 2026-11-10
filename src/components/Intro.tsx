@@ -61,9 +61,10 @@ export function Intro() {
         <span className="sr-only">{profile.headline}</span>
         {/* One span per character so the opening shot can decode it in place. */}
         <span className="intro__decode" aria-hidden>
-          {[...profile.headline].map((char, i) => (
-            <span key={i}>{char}</span>
-          ))}
+          {[...profile.headline].map((char, i) =>
+            // A newline in the headline starts its second sentence on a new line.
+            char === '\n' ? <br key={i} /> : <span key={i}>{char}</span>,
+          )}
         </span>
       </h1>
       <p className="body-text intro__subhead">{profile.subhead}</p>
@@ -76,6 +77,14 @@ export function Intro() {
         <div>
           <dt>Location</dt>
           <dd>{profile.location}</dd>
+        </div>
+        <div>
+          <dt>Experience</dt>
+          <dd>{profile.experience}</dd>
+        </div>
+        <div>
+          <dt>Stack</dt>
+          <dd>{profile.stack}</dd>
         </div>
         <div>
           <dt>Cloud</dt>

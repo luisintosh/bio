@@ -15,7 +15,6 @@ export function Contact() {
         Email me
       </a>
       <p className="contact__address">{contact.email}</p>
-      <p className="contact__resume">{contact.resume}</p>
 
       <ul className="contact__links">
         {contact.links.map((link) => (
