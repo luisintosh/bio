@@ -4,7 +4,7 @@ const CX = 220
 const COL = { x: 110, w: 220 }
 
 const STEPS = [
-  { title: '/mission Add CSV export', y: 10, h: 30 },
+  { title: '/solo-task Add CSV export', y: 10, h: 30 },
   { title: 'Spec', detail: 'Scenarios, plan, journeys', y: 54, h: 44 },
   { title: 'You approve the spec', y: 112, h: 30, gate: true },
   { title: 'Implement · shadow-coder', detail: 'Tests, then code and docs', y: 156, h: 44 },
@@ -16,7 +16,7 @@ const STEPS = [
 const PATH_MAIN = `M${CX} 40 V330`
 const PATH_FIX = 'M110 236 H90 V178 H110'
 
-/** The SoloDev /mission flow for its homepage card; solid blocks mark a human gate. */
+/** The SoloDev /solo-task flow for its homepage card; solid blocks mark a human gate. */
 export function SoloDevFlow() {
   const animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
