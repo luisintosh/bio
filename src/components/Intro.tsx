@@ -46,7 +46,6 @@ export function Intro() {
               width={512}
               height={512}
               loading="eager"
-              fetchPriority="high"
               decoding="async"
             />
           </div>

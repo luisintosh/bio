@@ -1,9 +1,10 @@
 /**
- * The home page's opening shot: clouds part, the paper column rises out of the sky,
- * the headline decodes, and the polaroid drops onto the page.
+ * The home page's motion outside the sky: the hero's name decodes on arrival, and when
+ * the Intro first scrolls into view its headline decodes and the polaroid drops onto
+ * the page.
  *
  * Every animation runs "from" a start state back to the element's own CSS, so the page
- * is already complete without it, and any scroll, click, or key press finishes it at once.
+ * is already complete without it.
  */
 
 const EASE_OUT = 'cubic-bezier(0.16, 1, 0.3, 1)'
@@ -36,26 +37,8 @@ function spring(steps: number, damping = 0.5, stiffness = 15): number[] {
   return out
 }
 
-function createVeil(): HTMLElement {
-  const veil = document.createElement('div')
-  veil.className = 'cine-veil'
-  veil.setAttribute('aria-hidden', 'true')
-  veil.innerHTML = `
-    <svg width="0" height="0" style="position:absolute">
-      <filter id="cine-billow" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="4" seed="7" result="noise">
-          <animate attributeName="baseFrequency" dur="2.4s" values="0.006 0.009;0.009 0.006" fill="freeze" />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="260" xChannelSelector="R" yChannelSelector="G" />
-      </filter>
-    </svg>
-    <div class="cine-veil__cloud"></div>`
-  document.body.append(veil)
-  return veil
-}
-
 /** Scrambles each character, then settles them left to right. Returns a finisher. */
-function decode(chars: HTMLElement[], delay: number, duration: number): () => void {
+export function decode(chars: HTMLElement[], delay: number, duration: number): () => void {
   const finals = chars.map((c) => c.textContent ?? '')
   const settleAt = finals.map((_, i) => delay + (i / chars.length) * duration * 0.75 + Math.random() * duration * 0.25)
   const start = performance.now()
@@ -97,56 +80,42 @@ function decode(chars: HTMLElement[], delay: number, duration: number): () => vo
   return settle
 }
 
-/** Plays the opening shot. Returns a cleanup that finishes it and removes the veil. */
+/** Shows random glyphs in place of each character until `decode` settles them. */
+function scramble(chars: HTMLElement[]): void {
+  chars.forEach((c) => {
+    if (!c.textContent?.trim()) return
+    c.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
+    c.classList.add('is-scrambled')
+  })
+}
+
+/**
+ * Sets the Intro's start frames now, and plays them the first time the Intro scrolls
+ * into view. Returns a cleanup that finishes everything.
+ */
 export function playIntro(): () => void {
-  const sky = document.querySelector<HTMLElement>('.sky')
-  const column = document.querySelector<HTMLElement>('.column')
+  const intro = document.querySelector<HTMLElement>('.intro')
   const polaroid = document.querySelector<HTMLElement>('.intro__polaroid')
   const card = document.querySelector<HTMLElement>('.intro__card')
   const chars = [...document.querySelectorAll<HTMLElement>('.intro__decode > span')]
-  const rest = [
-    ...document.querySelectorAll<HTMLElement>('.site-nav, .intro__subhead, .intro__facts > div, .intro__email'),
-  ]
+  const rest = [...document.querySelectorAll<HTMLElement>('.intro__subhead, .intro__facts > div, .intro__email')]
+  if (!intro) return () => {}
 
-  const veil = createVeil()
   const animations: Animation[] = []
   const run = (el: Element | null, frames: Keyframe[], options: KeyframeAnimationOptions) => {
     if (!el) return
     // A lone keyframe would be read as the end state; pin it as the start instead.
     const keyframes = frames.length === 1 ? [{ ...frames[0], offset: 0 }] : frames
-    animations.push(el.animate(keyframes, { fill: 'backwards', ...options }))
+    const animation = el.animate(keyframes, { fill: 'backwards', ...options })
+    // Paused at 0, the backwards fill holds the start frame until the Intro is in view.
+    animation.pause()
+    animations.push(animation)
   }
-
-  const cloud = veil.querySelector('.cine-veil__cloud')
-  run(cloud, [{ '--hole': '-18vmax' } as Keyframe, { '--hole': '160vmax' } as Keyframe], {
-    duration: 1900,
-    delay: 250,
-    easing: 'cubic-bezier(0.55, 0, 0.25, 1)',
-    fill: 'forwards',
-  })
-  run(veil, [{ opacity: 1 }, { opacity: 0 }], { duration: 500, delay: 1700, fill: 'forwards' })
-
-  run(sky, [{ transform: 'scale(1.45)', filter: 'blur(10px) brightness(1.15)' }], {
-    duration: 2400,
-    delay: 150,
-    easing: EASE_OUT,
-  })
-
-  run(
-    column,
-    [
-      {
-        transform: 'perspective(1600px) translateY(85vh) rotateX(22deg) scale(0.92)',
-        boxShadow: '0 80px 120px rgba(0, 0, 0, 0.35)',
-      },
-    ],
-    { duration: 1500, delay: 550, easing: EASE_OUT },
-  )
 
   rest.forEach((el, i) => {
     run(el, [{ opacity: 0, transform: 'translateY(14px)' }], {
       duration: 700,
-      delay: 1750 + i * 70,
+      delay: 650 + i * 70,
       easing: EASE_OUT,
     })
   })
@@ -155,43 +124,49 @@ export function playIntro(): () => void {
     const steps = spring(48)
     run(
       polaroid,
-      // Hidden while it waits: the column's tilt would otherwise project it into view.
       steps.map((p, i) => ({
         transform: `translateY(${(1 - p) * -170}vh) rotate(${-14 + p * 15.5}deg) scale(${1.25 - p * 0.25})`,
         opacity: i === 0 ? 0 : 1,
       })),
-      { duration: 1250, delay: 1350, easing: 'linear' },
+      { duration: 1250, delay: 250, easing: 'linear' },
     )
     run(
       card,
       [{ boxShadow: '30px 90px 70px rgba(0, 0, 0, 0.08)' }, { boxShadow: '8px 24px 30px rgba(0, 0, 0, 0.18)', offset: 0.55 }],
-      { duration: 1250, delay: 1350, easing: EASE_OUT },
+      { duration: 1250, delay: 250, easing: EASE_OUT },
     )
   }
 
-  const settleHeadline = decode(chars, 1000, 1300)
-
-  let done = false
-  const finish = () => {
-    if (done) return
-    done = true
-    animations.forEach((a) => a.finish())
-    settleHeadline()
-    veil.remove()
-    removeListeners()
+  // Scrambled now, so the headline never shows plain text before it decodes.
+  const finals = chars.map((c) => c.textContent ?? '')
+  scramble(chars)
+  let settleHeadline = () => {
+    chars.forEach((c, i) => {
+      c.textContent = finals[i]
+      c.classList.remove('is-scrambled')
+    })
   }
 
-  const skip = () => finish()
-  const events = ['wheel', 'touchstart', 'pointerdown', 'keydown'] as const
-  events.forEach((e) => window.addEventListener(e, skip, { passive: true, once: true }))
-  const removeListeners = () => events.forEach((e) => window.removeEventListener(e, skip))
+  const play = () => {
+    animations.forEach((a) => a.play())
+    chars.forEach((c, i) => (c.textContent = finals[i]))
+    settleHeadline = decode(chars, 100, 1300)
+  }
 
-  const timer = window.setTimeout(finish, 3200)
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return
+      observer.disconnect()
+      play()
+    },
+    { rootMargin: '0px 0px -20% 0px' },
+  )
+  observer.observe(intro)
 
   return () => {
-    window.clearTimeout(timer)
-    finish()
-    animations.forEach((a) => a.cancel())
+    observer.disconnect()
+    animations.forEach((a) => a.finish())
+    settleHeadline()
   }
 }
 

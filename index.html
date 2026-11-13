@@ -62,14 +62,9 @@
       rel="stylesheet"
     />
 
-    <!-- LCP: polaroid photo (AVIF; unsupported browsers ignore and use <picture>) -->
-    <link
-      rel="preload"
-      as="image"
-      href="/assets/links/profile.avif"
-      type="image/avif"
-      fetchpriority="high"
-    />
+    <!-- The hero's face: two small atlases of video frames the particles are drawn from. -->
+    <link rel="preload" as="image" href="/assets/hero/face-luma.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/assets/hero/face-depth.webp" type="image/webp" />
 
     <style>
       /* Critical shell — paints before JS/CSS chunks */
@@ -95,13 +90,18 @@
         min-height: 100vh;
         -webkit-font-smoothing: antialiased;
       }
-      .galaxy {
+      .sky {
         position: fixed;
         inset: 0;
         z-index: 0;
-        pointer-events: none;
         overflow: hidden;
-        background: #68b8d7;
+        background: linear-gradient(180deg, #b8deed 0%, #70bfdb 100%);
+      }
+      .hero {
+        position: relative;
+        z-index: 1;
+        height: 100vh;
+        height: 100svh;
       }
       .page {
         position: relative;

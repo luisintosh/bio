@@ -5,6 +5,8 @@ export const profile = {
   subhead:
     'I build AI into real products, and plain software when that’s the better fix. I start with the people who have the problem, prototype fast, and ship to production.',
   location: 'Remote from San Luis Potosí, Mexico (UTC−6)',
+  /** San Luis Potosí, shown in the hero's footer. */
+  coordinates: '22.15°N 100.98°W · UTC−6',
   experience: 'Building software since 2018',
   stack: 'TypeScript, React, Next.js, NestJS, LangGraph, RAG, Docker, Kubernetes',
   cloudCertifications: [
@@ -13,6 +15,13 @@ export const profile = {
   ],
   image: '/assets/links/profile',
 }
+
+export const navLinks = [
+  { label: 'Work', href: '/#work' },
+  { label: 'Experience', href: '/#experience' },
+  // Every page has a contact section, so this one stays on the current page.
+  { label: 'Email', href: '#contact' },
+]
 
 export type CaseStudySlug = 'act' | 'solodev' | 'ultra'
 

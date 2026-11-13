@@ -1,0 +1,220 @@
+/*
+ * The hero's text sits over the sky's canvas and lets the pointer through to it, except
+ * for the links. --hero runs from 1 (top of the page) to 0 (scrolled one screen down);
+ * the sky sets it every frame.
+ */
+.hero {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  height: 100svh;
+  pointer-events: none;
+  color: var(--ink);
+}
+
+.hero__nav {
+  position: absolute;
+  top: 18px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hero__brand {
+  font-weight: 500;
+}
+
+.hero__nav ul {
+  display: flex;
+  gap: 0 22px;
+}
+
+.hero__nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  pointer-events: auto;
+}
+
+.hero__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 10px;
+  height: 1px;
+  background: var(--accent);
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero__nav a:hover {
+  color: var(--accent);
+}
+
+.hero__nav a:hover::after {
+  right: 0;
+}
+
+.hero__title,
+.hero__role {
+  position: absolute;
+  top: 50%;
+  opacity: var(--hero, 1);
+  transform: translateY(calc(-50% - (1 - var(--hero, 1)) * 60px));
+}
+
+.hero__title {
+  left: 28px;
+}
+
+.hero__name {
+  font-size: clamp(28px, 4.2vw, 48px);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.hero__name .is-scrambled {
+  color: var(--accent);
+}
+
+.hero__meta {
+  display: flex;
+  gap: 28px;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.hero__role {
+  right: 28px;
+  max-width: 24ch;
+  font-size: 12px;
+  line-height: 1.55;
+  letter-spacing: 0.08em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.hero__foot {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 22px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: calc(var(--hero, 1) * 0.75);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.hero__scroll i {
+  display: block;
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(var(--ink), transparent);
+  transform-origin: top;
+  animation: hero-drip 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes hero-drip {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* Without WebGL2 the face is a still halftone, sized like the particle face. */
+.hero__poster {
+  display: none;
+}
+
+.sky-static .hero {
+  background: radial-gradient(ellipse 36% 55% at 50% 50%, rgba(245, 245, 242, 0.92), rgba(245, 245, 242, 0) 100%);
+}
+
+.sky-static .hero__poster {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  width: auto;
+  height: min(90vh, 60vw);
+  transform: translateX(-50%);
+  -webkit-mask-image: linear-gradient(#000 85%, transparent);
+  mask-image: linear-gradient(#000 85%, transparent);
+}
+
+@media (max-width: 1000px) {
+  .hero__title,
+  .hero__role {
+    top: 96px;
+    transform: translateY(calc((1 - var(--hero, 1)) * -60px));
+  }
+
+  .hero__role {
+    top: 180px;
+    left: 28px;
+    right: auto;
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__nav,
+  .hero__title,
+  .hero__role,
+  .hero__foot {
+    left: 16px;
+    right: 16px;
+  }
+
+  .hero__nav {
+    top: 8px;
+  }
+
+  .hero__brand {
+    display: none;
+  }
+
+  .hero__title {
+    top: 76px;
+  }
+
+  .hero__role {
+    top: 150px;
+  }
+
+  .hero__foot > span:first-child {
+    display: none;
+  }
+
+  .sky-static .hero__poster {
+    height: min(90vh, 105vw);
+  }
+}
