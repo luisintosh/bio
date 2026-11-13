@@ -140,13 +140,13 @@ export const caseStudies: CaseStudy[] = [
     name: 'SoloDev',
     title: 'One engineer leading a team of AI agents',
     summary: 'Open source. Works with Claude Code, Codex, and Cursor.',
-    dek: 'SoloDev is an open-source workflow that turns one approved spec into a reviewed, tested pull request, on Claude Code, Codex, or Cursor.',
+    dek: 'SoloDev is an open-source workflow that first helps you understand the requirements and define the spec. Once everything is clear, a team of AI agents builds it and hands you a tested pull request, on Claude Code, Codex, or Cursor.',
     facts: [
       { label: 'Role', value: 'Creator and maintainer' },
       { label: 'License', value: 'Open source, Apache 2.0' },
       { label: 'Runs on', value: 'Claude Code, Codex, Cursor' },
-      { label: 'Prompt evals', value: '77/77 scenarios, 40/40 routing' },
-      { label: 'In use', value: 'Daily, at MaxiCare' },
+      { label: 'Cost control', value: 'Model split, prompt cache' },
+      { label: 'In use', value: 'Daily, on every project' },
     ],
     beats: [
       {
@@ -163,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
       {
         tick: 'Today',
         title: 'One command, one ready PR',
-        body: '/solo-task takes a feature from spec to a reviewed, tested pull request. I use it every day at MaxiCare, so my time goes to the problem, not the busywork.',
+        body: '/solo-task takes a feature from spec to a reviewed, tested pull request. I use it every day on every project I work on, so my time goes to the problem, not the busywork.',
       },
     ],
     flow: {
@@ -175,6 +175,10 @@ export const caseStudies: CaseStudy[] = [
         title: 'The strong model thinks, the cheap model types',
         // DRAFT: "most of the savings".
         body: 'Planning and review need judgment. Writing code to an approved spec mostly doesn’t. That split is where most of the savings come from.',
+      },
+      {
+        title: 'Keep one coder warm in the cache',
+        body: 'One coder works the whole feature and is continued, not restarted, for each journey and fix round. Its cache lasts 1 hour instead of 5 minutes, so its context is reread at the cached rate. The reviewer starts fresh and skips the pricier long cache.',
       },
       {
         title: 'If code can check a rule, code checks it',
@@ -191,7 +195,7 @@ export const caseStudies: CaseStudy[] = [
         { name: 'Source', items: ['One catalog and prompt set', 'Models pinned in one place'] },
         { name: 'Build', items: ['7 skills', 'solodev CLI', 'Native agents for each tool'] },
         { name: 'Gates', items: ['Checks over git, not prompts', 'Unit tested'] },
-        { name: 'Evals', items: ['77 decision scenarios', '40 routing queries', 'Headless runs graded on git'] },
+        { name: 'Cache', items: ['One coder per feature, continued', '1-hour cache on the coder only', 'Fresh reviewer, default cache'] },
         { name: 'CI', items: ['A line budget for every skill'] },
       ],
     },
