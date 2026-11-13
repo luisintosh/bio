@@ -1,0 +1,9 @@
+{
+  "tile": 256,
+  "cols": 10,
+  "rows": 7,
+  "frames": 66,
+  "fps": 15,
+  "poster": 63,
+  "pingpong": true
+}

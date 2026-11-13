@@ -31,22 +31,13 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Solid sky fallback — kept in critical CSS so FCP doesn't wait on WebGL chunk */
-.galaxy {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  background: #68b8d7;
-}
-
-/* Stable layer for the opening shot's camera move; the clouds mount inside it. */
+/* The sky: a CSS gradient that paints at once; the particle canvas mounts inside it. */
 .sky {
   position: fixed;
   inset: 0;
   z-index: 0;
-  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(180deg, #b8deed 0%, #70bfdb 100%);
 }
 
 .sr-only {
@@ -56,32 +47,6 @@ body {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-/* The opening shot's cloud cover; --hole is the clear opening at its center. */
-@property --hole {
-  syntax: '<length>';
-  inherits: false;
-  initial-value: -18vmax;
-}
-
-.cine-veil {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-  filter: url(#cine-billow);
-}
-
-.cine-veil__cloud {
-  position: absolute;
-  inset: -15%;
-  background:
-    radial-gradient(circle at 30% 35%, #ffffff, rgba(255, 255, 255, 0) 45%),
-    radial-gradient(circle at 75% 65%, #e4eef5, rgba(228, 238, 245, 0) 50%),
-    #f1f5f7;
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, transparent var(--hole), #000 calc(var(--hole) + 18vmax));
-  mask-image: radial-gradient(circle at 50% 45%, transparent var(--hole), #000 calc(var(--hole) + 18vmax));
 }
 
 img {

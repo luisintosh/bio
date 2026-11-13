@@ -1,13 +1,6 @@
-import { profile } from '../data/content'
+import { navLinks, profile } from '../data/content'
 import { Corner } from './decor/Decor'
 import './SiteNav.css'
-
-const LINKS = [
-  { label: 'Work', href: '/#work' },
-  { label: 'Experience', href: '/#experience' },
-  // Every page has a contact section, so this one stays on the current page.
-  { label: 'Email', href: '#contact' },
-]
 
 const EXTERNAL_LINKS = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/luismendieta' },
@@ -23,7 +16,7 @@ export function SiteNav() {
         {profile.name}
       </a>
       <ul className="site-nav__links">
-        {LINKS.map((link) => (
+        {navLinks.map((link) => (
           <li key={link.label}>
             <a href={link.href}>{link.label}</a>
           </li>

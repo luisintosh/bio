@@ -1,4 +1,5 @@
 import { Experience } from './components/Experience'
+import { Hero } from './components/Hero'
 import { Intro } from './components/Intro'
 import { Principles } from './components/Principles'
 import { Projects } from './components/Projects'
@@ -7,7 +8,7 @@ import { Testimonials } from './components/Testimonials'
 
 export default function App() {
   return (
-    <SiteShell>
+    <SiteShell hero={<Hero />}>
       <Intro />
       <Projects />
       <Principles />
