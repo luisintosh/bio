@@ -1,0 +1,125 @@
+.lanes__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--font);
+}
+
+.lanes__svg--tall {
+  display: none;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .lanes__svg--wide {
+    display: none;
+  }
+
+  .lanes__svg--tall {
+    display: block;
+  }
+}
+
+.lanes__svg text {
+  fill: var(--ink);
+}
+
+.lanes__separator {
+  stroke: var(--ink);
+  stroke-opacity: 0.35;
+  stroke-dasharray: 1 4;
+}
+
+.lanes__gutter {
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.lanes__boundary {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+
+.lanes__lane {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.lanes__lane--tall {
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.lanes__lane .lanes__lane-name {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.lanes__spine,
+.lanes__arrow {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.lanes__loop {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.lanes__node rect {
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.lanes__svg .lanes__title {
+  font-size: 12px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+
+.lanes__svg .lanes__detail {
+  font-size: 11px;
+  font-weight: 300;
+  text-anchor: middle;
+}
+
+/* A person decides here: the solid block, as on the homepage diagrams. */
+.lanes__node--gate rect {
+  fill: var(--ink);
+}
+
+.lanes__svg .lanes__node--gate text {
+  fill: var(--white);
+}
+
+/* A deterministic check: no model, no tokens. */
+.lanes__node--code rect {
+  fill: var(--paper);
+  stroke-dasharray: 4 3;
+}
+
+.lanes__svg .lanes__node--code .lanes__title {
+  font-weight: 400;
+}
+
+/* Labels sit on their lines; the halo in the band's own color cuts the line behind them. */
+.lanes__svg .lanes__note {
+  font-size: 11px;
+  font-weight: 500;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--case-accent, var(--mat));
+  stroke-width: 6px;
+  stroke-linejoin: round;
+}
+
+.lanes__svg .lanes__note--end {
+  text-anchor: end;
+}
