@@ -12,7 +12,7 @@ export function Hero() {
 
   useLayoutEffect(() => {
     if (!shouldPlayIntro() || !nameRef.current) return
-    return decode([...nameRef.current.querySelectorAll<HTMLElement>('span')], 200, 1100)
+    return decode([...nameRef.current.querySelectorAll<HTMLElement>('span')], 120, 700)
   }, [])
 
   return (

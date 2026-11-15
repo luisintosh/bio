@@ -289,7 +289,7 @@ export function startSky({ canvas, face, cursor, onFail }: SkyOptions): () => vo
     const frames: [number, number, number] = [Math.floor(tf), next, tf - Math.floor(tf)]
 
     const hasFace = face && faceReadyAt > 0
-    const assemble = reduced ? 2 : hasFace ? Math.max(0, (now - faceReadyAt) / 1000 - 0.1) / 1.7 : 0
+    const assemble = reduced ? 2 : hasFace ? Math.max(0, (now - faceReadyAt) / 1000 - 0.05) / 1.0 : 0
     const cursorX = pointer.active ? cur.x : -9999
     const cursorY = pointer.active ? cur.y : -9999
 
