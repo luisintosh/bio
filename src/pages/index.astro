@@ -1,0 +1,49 @@
+---
+import { Experience } from '../components/Experience'
+import { Hero } from '../components/Hero'
+import { Intro } from '../components/Intro'
+import { Principles } from '../components/Principles'
+import { Projects } from '../components/Projects'
+import SiteShell from '../components/SiteShell.astro'
+import { Testimonials } from '../components/Testimonials'
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const description =
+  "Senior full-stack AI engineer. I build AI into real products, and plain software when that's the better fix. I start with the people who have the problem, prototype fast, and ship to production: LangGraph agents, RAG, TypeScript, and AWS."
+---
+
+<BaseLayout
+  title="Luis Mendieta ★ Senior Full-Stack AI Engineer"
+  description={description}
+  image={{
+    path: '/og-image-3.jpg',
+    width: 2400,
+    height: 1260,
+    alt: 'Luis Mendieta, Senior Full-Stack AI Engineer. Full-stack AI engineer. I ship what works.',
+  }}
+>
+  <!--
+    og-image-3.jpg is a 2× screenshot (2400×1260) of public/og-card.html. To update it:
+    1. Edit the text or styles in public/og-card.html.
+    2. Open it in a browser at a 1200×630 viewport with a 2× pixel ratio, e.g.:
+       agent-browser set viewport 1200 630 2 && agent-browser open "file://$PWD/public/og-card.html"
+       agent-browser screenshot og.png
+    3. Convert to JPG: sips -s format jpeg -s formatOptions 85 og.png --out public/og-image-3.jpg
+    4. Rename the file (and the path above) if links were already shared, so
+       LinkedIn, X, and Slack fetch it fresh; then refresh it in LinkedIn's Post Inspector.
+  -->
+  <Fragment slot="head">
+    <!-- The hero's face: two small atlases of video frames the particles are drawn from. -->
+    <link rel="preload" as="image" href="/assets/hero/face-luma.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/assets/hero/face-depth.webp" type="image/webp" />
+  </Fragment>
+
+  <SiteShell>
+    <Hero slot="hero" client:load />
+    <Intro client:load />
+    <Projects />
+    <Principles />
+    <Experience />
+    <Testimonials />
+  </SiteShell>
+</BaseLayout>

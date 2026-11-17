@@ -25,3 +25,6 @@ dist-ssr
 
 # Python env for scripts/face-atlas
 .venv
+
+# Astro
+.astro

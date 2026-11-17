@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useClientValue } from '../hooks/useClientValue'
 import './Sky.css'
 
 /** Low-power devices and data savers keep the plain CSS sky instead of the particles. */
@@ -21,7 +22,9 @@ export function Sky({ face = false }: { face?: boolean }) {
   const cursorRef = useRef<HTMLDivElement>(null)
   const labelRef = useRef<HTMLSpanElement>(null)
   const ringRef = useRef<HTMLSpanElement>(null)
-  const [failed, setFailed] = useState(prefersStaticSky)
+  const staticSky = useClientValue(prefersStaticSky, false)
+  const [engineFailed, setFailed] = useState(false)
+  const failed = staticSky || engineFailed
 
   useEffect(() => {
     document.documentElement.classList.toggle('sky-static', failed)

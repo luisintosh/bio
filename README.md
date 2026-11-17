@@ -1,16 +1,22 @@
 # luism.dev
 
-Personal site for Luis Mendieta — Vite + React, deployed to GitHub Pages.
+Personal site for Luis Mendieta — Astro (static) with React islands, deployed to GitHub Pages.
 
 ## Scripts
 
 ```bash
-bun install
-bun run dev
-bun run build
+pnpm install
+pnpm dev
+pnpm build     # type-checks, then writes the static site to dist/
+pnpm preview
 ```
 
-Open the local URL Vite prints (often `http://127.0.0.1:5173/`).
+Open the local URL Astro prints (often `http://localhost:4321/`).
+
+Pages live in `src/pages/` (`work/[slug].astro` builds one page per case study in
+`src/data/content.ts`). Components render to static HTML at build time; only the ones
+marked `client:*` (the sky, the hero and intro animations, SoloDev's team) load JS.
+Pushing to `main` deploys via `.github/workflows/deploy.yml`.
 
 ## Hero face
 

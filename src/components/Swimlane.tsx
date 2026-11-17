@@ -89,8 +89,6 @@ function layout(flow: Flow, orientation: Orientation) {
 function Diagram({ flow, id, orientation }: { flow: Flow; id: string; orientation: Orientation }) {
   const g = layout(flow, orientation)
   const prefix = `${id}-${orientation}`
-  const animate =
-    typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   return (
     <svg
@@ -180,7 +178,7 @@ function Diagram({ flow, id, orientation }: { flow: Flow; id: string; orientatio
       ))}
 
       {/* Drawn before the boxes so the pulse passes behind them. */}
-      {animate && <FlowPulse path={g.spine} dur={flow.steps.length * 0.9} />}
+      <FlowPulse path={g.spine} dur={flow.steps.length * 0.9} />
 
       {g.arrows.map((d) => (
         <path key={d} className="lanes__arrow" d={d} markerEnd={`url(#${prefix}-arrow)`} />

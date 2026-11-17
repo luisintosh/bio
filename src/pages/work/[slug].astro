@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { CaseStudyPage } from '../../components/CaseStudyPage'
+import SiteShell from '../../components/SiteShell.astro'
+import { SoloDevTeam } from '../../components/SoloDevTeam'
+import { caseStudies } from '../../data/content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+export const getStaticPaths = (() =>
+  caseStudies.map((study) => ({ params: { slug: study.slug }, props: { study } }))) satisfies GetStaticPaths
+
+const { study } = Astro.props
+---
+
+<BaseLayout title={study.meta.title} description={study.meta.description} ogType="article">
+  <SiteShell>
+    <CaseStudyPage study={study}>
+      {study.slug === 'solodev' && <SoloDevTeam slot="team" client:visible />}
+    </CaseStudyPage>
+  </SiteShell>
+</BaseLayout>

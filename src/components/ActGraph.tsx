@@ -27,8 +27,6 @@ const reviewerPath = (x: number) =>
 
 /** The ACT question flow for its homepage card. */
 export function ActGraph() {
-  const animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
   return (
     <svg
       className="flow-graph"
@@ -52,16 +50,12 @@ export function ActGraph() {
       </g>
 
       {/* Drawn before the boxes so pulses pass behind them. */}
-      {animate && (
-        <>
-          <FlowPulse path={PATH_MAIN} dur={6} />
-          {REVIEWERS.map((x, i) => (
-            <FlowPulse key={x} path={reviewerPath(x)} dur={1.6} begin={i * 0.3} />
-          ))}
-          <FlowPulse path={PATH_REGENERATE} dur={2.4} begin={0.8} />
-          <FlowPulse path={PATH_FEEDBACK} dur={3.6} begin={1.6} />
-        </>
-      )}
+      <FlowPulse path={PATH_MAIN} dur={6} />
+      {REVIEWERS.map((x, i) => (
+        <FlowPulse key={x} path={reviewerPath(x)} dur={1.6} begin={i * 0.3} />
+      ))}
+      <FlowPulse path={PATH_REGENERATE} dur={2.4} begin={0.8} />
+      <FlowPulse path={PATH_FEEDBACK} dur={3.6} begin={1.6} />
 
       {STEPS.map((step) => (
         <g

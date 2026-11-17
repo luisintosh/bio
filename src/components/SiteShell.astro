@@ -1,0 +1,40 @@
+---
+import { Contact } from './Contact'
+import { SiteNav } from './SiteNav'
+import { Sky } from './Sky'
+
+/**
+ * Every page: the particle sky behind, then the white column of content. The home page
+ * fills the `hero` slot, which fills the first screen above the column, and gets the face.
+ */
+const hasHero = Astro.slots.has('hero')
+---
+
+<Sky client:load face={hasHero} />
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<slot name="hero" />
+
+<div class="page">
+  <div class="column">
+    <header>
+      <SiteNav />
+    </header>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <footer>
+      <Contact />
+    </footer>
+  </div>
+</div>
+
+<script>
+  import Lenis from 'lenis'
+  import 'lenis/dist/lenis.css'
+
+  // Eased wheel scrolling; the sky reads the same scroll position, so they move as one.
+  // Lenis turns its own smoothing off for visitors who prefer reduced motion.
+  new Lenis({ autoRaf: true, anchors: true, lerp: 0.09 })
+</script>

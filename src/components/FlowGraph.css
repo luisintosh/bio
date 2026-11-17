@@ -65,3 +65,10 @@
 .flow-graph__pulse {
   fill: var(--flow-pulse, var(--accent));
 }
+
+/* Rendered at build time for everyone; hidden here for visitors who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .flow-graph__pulse {
+    display: none;
+  }
+}

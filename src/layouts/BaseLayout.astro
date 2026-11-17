@@ -1,0 +1,69 @@
+---
+import '../index.css'
+
+interface Props {
+  /** The page's own title; " ★ Luis Mendieta" is added for the tab. */
+  title: string
+  description: string
+  /** The headline for link previews; defaults to `title`. */
+  ogTitle?: string
+  ogType?: 'website' | 'article'
+  image?: { path: string; width?: number; height?: number; alt?: string }
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogType = 'website',
+  image = { path: '/preview-image.jpg' },
+} = Astro.props
+
+const fullTitle = title.includes('★') ? title : `${title} ★ Luis Mendieta`
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const imageUrl = new URL(image.path, Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Luis Mendieta" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    {image.width && <meta property="og:image:width" content={String(image.width)} />}
+    {image.height && <meta property="og:image:height" content={String(image.height)} />}
+    {image.alt && <meta property="og:image:alt" content={image.alt} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:creator" content="@luisintosh" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Only weights used in CSS: 300, 400, 500 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

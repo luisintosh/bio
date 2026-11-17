@@ -47,6 +47,8 @@ type Layer = {
 export type CaseStudy = {
   slug: CaseStudySlug
   name: string
+  /** The case page's <title> (without the name suffix) and meta description. */
+  meta: { title: string; description: string }
   /** The company's own site, linked from the case page. */
   site?: { label: string; href: string }
   title: string
@@ -74,6 +76,11 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'act',
+    meta: {
+      title: 'The AI drafts the exam question. A specialist decides.',
+      description:
+        'How a prototype grew into a GenAI exam platform with LangGraph agents, RAG, specialist review, and deployment to AWS.',
+    },
     name: 'ACT',
     site: { label: 'act.org', href: 'https://www.act.org/' },
     title: 'The AI drafts the exam question. A specialist decides.',
@@ -137,6 +144,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'solodev',
+    meta: {
+      title: 'Ship features with an AI team, not a single agent',
+      description:
+        'Describe a feature, approve one spec, and get back a reviewed, tested, documented pull request from a team of AI agents. Open source, for Claude Code, Codex, and Cursor.',
+    },
     name: 'SoloDev',
     title: 'Ship features with an AI team, not a single agent',
     summary:
@@ -211,6 +223,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'ultra',
+    meta: {
+      title: 'A crypto wallet that unlocks like a normal sign-in',
+      description:
+        'How I led the frontend architecture for a Chrome extension crypto wallet and NFT marketplace serving thousands of active users.',
+    },
     name: 'Ultra',
     site: { label: 'ultra.io', href: 'https://ultra.io/' },
     title: 'A crypto wallet that unlocks like a normal sign-in',

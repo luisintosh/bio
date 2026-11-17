@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { prefersReducedMotion, useClientValue } from '../hooks/useClientValue'
 import './SoloDevTeam.css'
 
 /*
@@ -24,9 +25,8 @@ const HOLD_BEATS = 4
 
 function useSequence() {
   const ref = useRef<HTMLElement>(null)
-  const reduced =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const [beat, setBeat] = useState(reduced ? LAST : 0)
+  const reduced = useClientValue(prefersReducedMotion, false)
+  const [beat, setBeat] = useState(0)
   const [visible, setVisible] = useState(false)
   const [run, setRun] = useState(0)
   // The interval reads the beat from here, so it resumes where it paused without restarting.
@@ -58,7 +58,8 @@ function useSequence() {
     setRun((r) => r + 1)
   }
 
-  return { ref, beat, replay, reduced }
+  // Reduced motion shows the finished sequence, without playing it.
+  return { ref, beat: reduced ? LAST : beat, replay, reduced }
 }
 
 export function SoloDevTeam() {

@@ -1,9 +1,8 @@
+import type { ReactNode } from 'react'
 import { type CaseStudy, caseStudies, testimonials } from '../data/content'
 import { flows } from '../data/flows'
 import { Corner } from './decor/Decor'
 import { Picture } from './Picture'
-import { SiteShell } from './SiteShell'
-import { SoloDevTeam } from './SoloDevTeam'
 import { Swimlane } from './Swimlane'
 import './CaseStudyPage.css'
 
@@ -69,126 +68,128 @@ function TryIt({ link }: { link: NonNullable<CaseStudy['link']> }) {
   )
 }
 
-export function CaseStudyPage({ study }: { study: CaseStudy }) {
+/**
+ * A case study's article. Rendered to static HTML; the page passes any interactive
+ * part (SoloDev's team animation) in as the `team` slot, hydrated on its own.
+ */
+export function CaseStudyPage({ study, team }: { study: CaseStudy; team?: ReactNode }) {
   const next = caseStudies[(caseStudies.indexOf(study) + 1) % caseStudies.length]
 
   return (
-    <SiteShell>
-      <article className={`case case--${study.slug}`}>
-        <header className="case__head">
-          <div className="case__head-copy">
-            <nav className="case__crumbs" aria-label="Breadcrumb">
-              <a href="/#work">Work</a>
-              <span aria-hidden>/</span>
-              <span aria-current="page">{study.name}</span>
-              {study.site && (
-                <a className="case__site" href={study.site.href} target="_blank" rel="noreferrer">
-                  {study.site.label}
-                  <Arrow external />
-                </a>
-              )}
-            </nav>
-            <h1 className="case__title">{study.title}</h1>
-            <p className="case__dek">{study.dek}</p>
-          </div>
-        </header>
+    <article className={`case case--${study.slug}`}>
+      <header className="case__head">
+        <div className="case__head-copy">
+          <nav className="case__crumbs" aria-label="Breadcrumb">
+            <a href="/#work">Work</a>
+            <span aria-hidden>/</span>
+            <span aria-current="page">{study.name}</span>
+            {study.site && (
+              <a className="case__site" href={study.site.href} target="_blank" rel="noreferrer">
+                {study.site.label}
+                <Arrow external />
+              </a>
+            )}
+          </nav>
+          <h1 className="case__title">{study.title}</h1>
+          <p className="case__dek">{study.dek}</p>
+        </div>
+      </header>
 
-        <dl className="case__facts">
-          {study.facts.map((fact) => (
-            <div key={fact.label}>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
+      <dl className="case__facts">
+        {study.facts.map((fact) => (
+          <div key={fact.label}>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {study.slug === 'ultra' && (
+        <figure className="case__screens">
+          <Picture
+            src="/assets/portfolio/ultra-crypto-wallet"
+            alt="Ultra wallet screens: a balance view and a collectible transfer"
+            className="case__screen"
+            width={780}
+            height={730}
+            loading="eager"
+          />
+        </figure>
+      )}
+
+      <section className="case__arc" aria-labelledby="story-title">
+        <h2 id="story-title" className="sr-only">
+          The story
+        </h2>
+        <ol>
+          {study.beats.map((beat) => (
+            <li key={beat.tick}>
+              <span className="case__tick">{beat.tick}</span>
+              <h3>{beat.title}</h3>
+              <p>{beat.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {team}
+
+      <section className="case__flow" aria-labelledby="flow-title">
+        <Corner position="tl" />
+        <Corner position="br" />
+        <div className="case__flow-head">
+          <h2 id="flow-title" className="case__h2">
+            {study.flow.title}
+          </h2>
+          <p>{study.flow.caption}</p>
+        </div>
+        <Swimlane flow={flows[study.slug]} id={study.slug} />
+      </section>
+
+      <section className="case__calls" aria-labelledby="calls-title">
+        <h2 id="calls-title" className="case__h2">
+          Calls I made
+        </h2>
+        <ul>
+          {study.decisions.map((decision) => (
+            <li key={decision.title}>
+              <h3>{decision.title}</h3>
+              <p>{decision.body}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="case__layers" aria-labelledby="layers-title">
+        <h2 id="layers-title" className="case__h2">
+          {study.layers.title}
+        </h2>
+        <dl>
+          {study.layers.items.map((layer) => (
+            <div key={layer.name}>
+              <dt>{layer.name}</dt>
+              <dd>
+                <ul>
+                  {layer.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </dd>
             </div>
           ))}
         </dl>
+      </section>
 
-        {study.slug === 'ultra' && (
-          <figure className="case__screens">
-            <Picture
-              src="/assets/portfolio/ultra-crypto-wallet"
-              alt="Ultra wallet screens: a balance view and a collectible transfer"
-              className="case__screen"
-              width={780}
-              height={730}
-              loading="eager"
-            />
-          </figure>
-        )}
+      {study.quote && <Quote name={study.quote} />}
+      {study.link && <TryIt link={study.link} />}
 
-        <section className="case__arc" aria-labelledby="story-title">
-          <h2 id="story-title" className="sr-only">
-            The story
-          </h2>
-          <ol>
-            {study.beats.map((beat) => (
-              <li key={beat.tick}>
-                <span className="case__tick">{beat.tick}</span>
-                <h3>{beat.title}</h3>
-                <p>{beat.body}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {study.slug === 'solodev' && <SoloDevTeam />}
-
-        <section className="case__flow" aria-labelledby="flow-title">
-          <Corner position="tl" />
-          <Corner position="br" />
-          <div className="case__flow-head">
-            <h2 id="flow-title" className="case__h2">
-              {study.flow.title}
-            </h2>
-            <p>{study.flow.caption}</p>
-          </div>
-          <Swimlane flow={flows[study.slug]} id={study.slug} />
-        </section>
-
-        <section className="case__calls" aria-labelledby="calls-title">
-          <h2 id="calls-title" className="case__h2">
-            Calls I made
-          </h2>
-          <ul>
-            {study.decisions.map((decision) => (
-              <li key={decision.title}>
-                <h3>{decision.title}</h3>
-                <p>{decision.body}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="case__layers" aria-labelledby="layers-title">
-          <h2 id="layers-title" className="case__h2">
-            {study.layers.title}
-          </h2>
-          <dl>
-            {study.layers.items.map((layer) => (
-              <div key={layer.name}>
-                <dt>{layer.name}</dt>
-                <dd>
-                  <ul>
-                    {layer.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        {study.quote && <Quote name={study.quote} />}
-        {study.link && <TryIt link={study.link} />}
-
-        <a className="case__next" href={`/work/${next.slug}/`}>
-          <span className="case__next-label">Next case · {next.name}</span>
-          <span className="case__next-title">{next.title}</span>
-          <span className="case__next-arrow">
-            <Arrow />
-          </span>
-        </a>
-      </article>
-    </SiteShell>
+      <a className="case__next" href={`/work/${next.slug}/`}>
+        <span className="case__next-label">Next case · {next.name}</span>
+        <span className="case__next-title">{next.title}</span>
+        <span className="case__next-arrow">
+          <Arrow />
+        </span>
+      </a>
+    </article>
   )
 }
