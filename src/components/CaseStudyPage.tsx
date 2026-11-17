@@ -3,6 +3,7 @@ import { flows } from '../data/flows'
 import { Corner } from './decor/Decor'
 import { Picture } from './Picture'
 import { SiteShell } from './SiteShell'
+import { SoloDevTeam } from './SoloDevTeam'
 import { Swimlane } from './Swimlane'
 import './CaseStudyPage.css'
 
@@ -18,21 +19,6 @@ function Arrow({ external = false }: { external?: boolean }) {
     >
       <path d={external ? 'M7 17 17 7M8 7h9v9' : 'M5 12h14M13 6l6 6-6 6'} />
     </svg>
-  )
-}
-
-/** The page's own visual beside or below the header, when the work can be shown. */
-function HeaderArt({ slug }: { slug: CaseStudy['slug'] }) {
-  if (slug !== 'solodev') return null
-  return (
-    <Picture
-      src="/assets/links/solodev"
-      alt="SoloDev artwork: a developer at a desk with a team of AI shadows behind them. Its caption reads: Summon a team of AI “shadows” with one command."
-      className="case__art"
-      width={960}
-      height={960}
-      loading="eager"
-    />
   )
 }
 
@@ -105,7 +91,6 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             <h1 className="case__title">{study.title}</h1>
             <p className="case__dek">{study.dek}</p>
           </div>
-          <HeaderArt slug={study.slug} />
         </header>
 
         <dl className="case__facts">
@@ -144,6 +129,8 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             ))}
           </ol>
         </section>
+
+        {study.slug === 'solodev' && <SoloDevTeam />}
 
         <section className="case__flow" aria-labelledby="flow-title">
           <Corner position="tl" />

@@ -138,14 +138,14 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'solodev',
     name: 'SoloDev',
-    title: 'One engineer leading a team of AI agents',
-    summary: 'Open source. Works with Claude Code, Codex, and Cursor.',
-    dek: 'SoloDev is an open-source workflow that first helps you understand the requirements and define the spec. Once everything is clear, a team of AI agents builds it and hands you a tested pull request, on Claude Code, Codex, or Cursor.',
+    title: 'Ship features with an AI team, not a single agent',
+    summary:
+      'Describe a feature, approve one spec, and get back a reviewed, tested, documented pull request. Open source, on Claude Code, Codex, and Cursor.',
+    dek: 'A single agent asked to build a feature guesses the scope, writes tests that pass by construction, and reviews its own work. SoloDev splits those jobs across a team: you approve one spec, and you get back a reviewed, tested, documented pull request, on Claude Code, Codex, or Cursor.',
     facts: [
       { label: 'Role', value: 'Creator and maintainer' },
       { label: 'License', value: 'Open source, Apache 2.0' },
       { label: 'Runs on', value: 'Claude Code, Codex, Cursor' },
-      { label: 'Cost control', value: 'Model split, prompt cache' },
       { label: 'In use', value: 'Daily, on every project' },
     ],
     beats: [
@@ -157,13 +157,13 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         tick: 'Rebuild',
-        title: 'Spend tokens only on judgment',
-        body: 'On my own time I rebuilt it lean: a strong model plans and reviews, a cheaper one writes code, and any rule a script can check costs zero tokens.',
+        title: 'A team, not one agent',
+        body: 'On my own time I rebuilt it lean: a commander and four role-separated subagents, a strong model to plan and review, a cheaper one to write code, and every rule a script can check moved into a CLI.',
       },
       {
         tick: 'Today',
         title: 'One command, one ready PR',
-        body: '/solo-task takes a feature from spec to a reviewed, tested pull request. I use it every day on every project I work on, so my time goes to the problem, not the busywork.',
+        body: '/solo-task takes a feature from spec to a reviewed, tested pull request with QA results and a file-by-file walkthrough. I use it every day on every project, so my time goes to the problem, not the busywork.',
       },
     ],
     flow: {
@@ -172,31 +172,36 @@ export const caseStudies: CaseStudy[] = [
     },
     decisions: [
       {
+        title: 'You approve a spec before any code exists',
+        body: 'The spec holds requirements, tagged acceptance scenarios, and a plan. “No code before approval” is a unit-tested git check in the solodev CLI that fails the branch, not a line in a prompt that a model can skip.',
+      },
+      {
+        title: 'Tests must fail before they pass',
+        body: 'Each failing run is recorded. The reviewer reads that record before running the test against the new code, so a test that passes by construction gets caught.',
+      },
+      {
+        title: 'The reviewer never wrote the code',
+        body: 'Coder, spec reviewer, code reviewer, and verifier each run in fresh context on their own model, and the coder can run on a different tool, so one vendor’s model checks another’s work. Changes to auth, payments, migrations, or a public API get one reviewer per lens, in parallel.',
+      },
+      {
         title: 'The strong model thinks, the cheap model types',
         // DRAFT: "most of the savings".
         body: 'Planning and review need judgment. Writing code to an approved spec mostly doesn’t. That split is where most of the savings come from.',
       },
       {
         title: 'Keep one coder warm in the cache',
-        body: 'One coder works the whole feature and is continued, not restarted, for each journey and fix round. Its cache lasts 1 hour instead of 5 minutes, so its context is reread at the cached rate. The reviewer starts fresh and skips the pricier long cache.',
-      },
-      {
-        title: 'If code can check a rule, code checks it',
-        body: '“No code before approval” is a git check in the solodev CLI, with unit tests, not a line in a prompt that a model can skip.',
-      },
-      {
-        title: 'The reviewer never wrote the code',
-        body: 'A fresh-context reviewer runs each test on the old code, where it must fail, then on the new code, where it must pass.',
+        body: 'One coder works the whole feature and is continued, not restarted, for each journey and fix round. Its cache lasts 1 hour instead of 5 minutes, so its context is reread at the cached rate. The reviewers start fresh and share the default cache.',
       },
     ],
     layers: {
       title: 'How it’s built',
       items: [
-        { name: 'Source', items: ['One catalog and prompt set', 'Models pinned in one place'] },
-        { name: 'Build', items: ['7 skills', 'solodev CLI', 'Native agents for each tool'] },
-        { name: 'Gates', items: ['Checks over git, not prompts', 'Unit tested'] },
-        { name: 'Cache', items: ['One coder per feature, continued', '1-hour cache on the coder only', 'Fresh reviewer, default cache'] },
-        { name: 'CI', items: ['A line budget for every skill'] },
+        { name: 'Agents', items: ['A commander', 'One writer, report-only reviewers', 'Hard permission denies'] },
+        { name: 'Gates', items: ['Checks over git, not prompts', 'Unit-tested CLI', 'Retry budgets that stop and ask'] },
+        { name: 'Build', items: ['One source catalog', 'Native agents for 3 tools', 'Models pinned per role'] },
+        { name: 'Evals', items: ['77 decision scenarios', '40 routing queries', 'Headless stage evals graded on git'] },
+        { name: 'Release', items: ['TypeScript CLI', 'Skill line budgets in CI', 'Migration paths across majors'] },
+        { name: 'Repo', items: ['Specs live outside it', 'State derived from git', 'Never merges or pushes to main'] },
       ],
     },
     link: {

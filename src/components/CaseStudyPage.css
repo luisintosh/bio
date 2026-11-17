@@ -91,12 +91,6 @@
   line-height: 1.7;
 }
 
-.case__art {
-  width: 220px;
-  height: auto;
-  border: var(--border);
-}
-
 /* ---------- Facts ---------- */
 
 .case__facts {
@@ -513,11 +507,6 @@
 
   .case__crumbs {
     margin-bottom: 20px;
-  }
-
-  /* The title leads on phones; the art adds nothing the dek doesn't say. */
-  .case__art {
-    display: none;
   }
 
   .case__dek {

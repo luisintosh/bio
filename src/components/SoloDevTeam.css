@@ -1,0 +1,433 @@
+.team {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fail: #b8321f;
+  --fail-bg: #f8d9d2;
+  --pass: #1d6a3e;
+  --pass-bg: #d3ecd9;
+  --faint: rgba(28, 28, 28, 0.45);
+  position: relative;
+  padding: 44px 40px 40px;
+  background: var(--white);
+  border-top: var(--border);
+}
+
+.team__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 32px;
+  margin-bottom: 28px;
+}
+
+.team__head p {
+  max-width: 48ch;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.team__grid {
+  border: var(--border);
+}
+
+.team__colhead,
+.team__row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.team__colhead span {
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.team__colhead span:nth-child(2) {
+  color: rgba(28, 28, 28, 0.6);
+  border-left: var(--border);
+}
+
+.team__colhead span:nth-child(3) {
+  background: var(--solodev);
+  border-left: var(--border);
+}
+
+.team__row {
+  border-top: var(--border);
+}
+
+.team__label {
+  padding: 18px 16px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.team__solo,
+.team__fix {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 16px 20px;
+  border-left: var(--border);
+}
+
+.team__solo {
+  background: repeating-linear-gradient(-45deg, transparent 0 7px, rgba(28, 28, 28, 0.04) 7px 8px);
+  color: rgba(28, 28, 28, 0.62);
+}
+
+.team__solo p,
+.team__fix p {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.team__fix p {
+  max-width: 58ch;
+}
+
+/* ---------- Shared chips ---------- */
+
+.team__agent,
+.team__run,
+.team__lens,
+.team__diff,
+.team__pr,
+.team__fuzzy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: var(--border);
+  background: var(--white);
+  font-size: 12px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.team__solo :is(.team__agent, .team__run, .team__diff, .team__fuzzy) {
+  border-color: var(--faint);
+  background: transparent;
+}
+
+.team__arrow {
+  font-size: 14px;
+  opacity: 0.15;
+  transition: opacity 0.4s var(--ease);
+}
+
+.team__arrow.is-on {
+  opacity: 1;
+}
+
+/* ---------- Scope ---------- */
+
+.team__fuzzy {
+  align-self: flex-start;
+  border-style: dashed;
+}
+
+.team__q {
+  font-weight: 500;
+  animation: team-wobble 2.4s ease-in-out infinite;
+}
+
+@keyframes team-wobble {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.team__spec {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  align-self: flex-start;
+  min-width: 220px;
+  padding: 10px 12px 12px;
+  border: var(--border);
+  font-size: 12px;
+}
+
+.team__card-title {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.team__line {
+  display: flex;
+  gap: 8px;
+  opacity: 0.25;
+  transform: translateX(-4px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.team__line.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.team__check {
+  color: var(--pass);
+  font-weight: 500;
+}
+
+/* The human gate: solid ink, like every diagram on the site. */
+.team__stamp {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  padding: 5px 9px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0;
+  transform: scale(1.5) rotate(-6deg);
+  transition: opacity 0.2s, transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.team__stamp.is-on {
+  opacity: 1;
+  transform: scale(1) rotate(-6deg);
+}
+
+/* ---------- Tests ---------- */
+
+.team__runs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.team__run b {
+  font-weight: 500;
+}
+
+.team__run i {
+  font-style: normal;
+  font-weight: 300;
+}
+
+.team__fix .team__run {
+  opacity: 0.25;
+  transition: opacity 0.35s var(--ease), background-color 0.35s var(--ease);
+}
+
+.team__fix .team__run.is-on {
+  opacity: 1;
+}
+
+.team__run--fail.is-on {
+  background: var(--fail-bg);
+  color: var(--fail);
+  border-color: var(--fail);
+  animation: team-shake 0.35s;
+}
+
+.team__run--pass.is-on {
+  background: var(--pass-bg);
+  color: var(--pass);
+  border-color: var(--pass);
+}
+
+.team__solo .team__run--pass.is-on {
+  background: transparent;
+  color: inherit;
+  border-color: var(--faint);
+}
+
+@keyframes team-shake {
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* ---------- Review ---------- */
+
+.team__self {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.team__loop {
+  width: 48px;
+  height: 24px;
+}
+
+.team__lgtm {
+  font-size: 12px;
+}
+
+.team__review {
+  display: grid;
+  gap: 10px;
+}
+
+.team__pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.team__agent--reviewer {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  opacity: 0.25;
+  transition: opacity 0.35s var(--ease), background-color 0.35s var(--ease);
+}
+
+.team__agent--reviewer.is-on {
+  opacity: 1;
+  background: var(--solodev);
+}
+
+.team__agent--reviewer small {
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.team__lenses {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.team__risky {
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.25;
+  transition: opacity 0.35s var(--ease);
+}
+
+.team__risky.is-on {
+  opacity: 1;
+}
+
+.team__lens {
+  padding: 4px 8px;
+  font-size: 11px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), background-color 0.35s var(--ease);
+}
+
+.team__lens.is-on {
+  opacity: 1;
+  transform: none;
+  background: var(--solodev);
+}
+
+/* ---------- Result ---------- */
+
+.team__row--result .team__fix {
+  background: rgba(244, 201, 93, 0.18);
+}
+
+.team__diff {
+  align-self: flex-start;
+  font-variant-numeric: tabular-nums;
+}
+
+.team__pr {
+  align-self: flex-start;
+  opacity: 0.25;
+  transition: opacity 0.35s var(--ease), background-color 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.team__pr b {
+  font-weight: 500;
+}
+
+.team__pr span {
+  padding-left: 8px;
+  border-left: 1px solid currentColor;
+  font-weight: 300;
+}
+
+.team__pr.is-on {
+  opacity: 1;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.team__replay {
+  margin-top: 14px;
+  padding: 6px 12px;
+  background: var(--white);
+  border: var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.team__replay:hover,
+.team__replay:focus-visible {
+  background: var(--solodev);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team *,
+  .team *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .team {
+    padding: 36px 16px 32px;
+  }
+
+  .team__colhead {
+    display: none;
+  }
+
+  /* Rows stack: label, then the failure, then the fix. */
+  .team__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .team__label {
+    padding: 12px 16px;
+    background: var(--solodev);
+    border-bottom: var(--border);
+  }
+
+  .team__solo,
+  .team__fix {
+    border-left: none;
+  }
+
+  .team__solo {
+    border-bottom: 1px dotted var(--faint);
+  }
+
+  .team__solo::before,
+  .team__fix::before {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .team__solo::before {
+    content: 'One agent';
+  }
+
+  .team__fix::before {
+    content: 'SoloDev';
+    color: var(--ink);
+  }
+
+  .team__pr {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+}

@@ -35,6 +35,14 @@
   background: #6b3fd6;
 }
 
+.plate__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .plate__screen {
   width: 100%;
   height: auto;

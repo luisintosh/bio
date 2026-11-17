@@ -76,14 +76,14 @@ export const flows: Record<CaseStudySlug, Flow> = {
       { lane: 1, title: 'Spec', detail: 'scenarios' },
       { lane: 0, title: 'Approve', detail: 'the spec', gate: true },
       { lane: 3, title: 'check', detail: 'no code yet', code: true },
-      { lane: 2, title: 'Code', detail: 'tests first' },
-      { lane: 1, title: 'Review', detail: '6 lenses' },
+      { lane: 2, title: 'Code', detail: 'fail first' },
+      { lane: 1, title: 'Review', detail: 'fresh eyes' },
       { lane: 1, title: 'Draft PR', detail: 'QA, ready' },
       { lane: 0, title: 'Merge', detail: 'your call', gate: true },
     ],
     loops: [{ from: 5, to: 4, label: 'fix once', depth: 14 }],
     label:
-      'You start /solo-task with a feature. The strong model writes a spec with acceptance scenarios, and you approve it. The solodev CLI checks, at zero tokens, that no code exists before approval. The cheaper model writes the tests first, then the code. The strong model, in a fresh context, reviews it through six lenses and can send it back for one fix. It opens a draft pull request, runs QA, and marks it ready, and you merge it.',
+      'You start /solo-task with a feature. The strong model writes a spec with acceptance scenarios, and you approve it. The solodev CLI checks, at zero tokens, that no code exists before approval. The cheaper model writes the tests first and records them failing, then writes the code. A reviewer that never wrote the code, in a fresh context on the strong model, checks it, with one reviewer per lens for risky changes, and can send it back for one fix. It opens a draft pull request, runs QA, and marks it ready, and you merge it.',
   },
   ultra: {
     lanes: [
